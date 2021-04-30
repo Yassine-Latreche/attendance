@@ -53,7 +53,7 @@ INSERT INTO `sessions` (`id`, `professor_Id`, `is_in_group`, `group_Id`, `is_in_
 
 INSERT INTO `students` (`id`, `name`, `level_Id`, `section_Id`, `group_Id`, `email`, `birthday`, `phone_number`, `living_area`, `willaya_d_origine`, `device_type`, `device_id`, `created_at`, `updated_at`) VALUES
 (2, 'Latreche Yassine', 3, 4, 5, 'ya.latreche@esi-sba.dz', '2001-01-20', 798792997, '22', '47', 'android', '8975-GBYV-6876-BKHE', '2021-04-24 09:50:20', '2021-04-24 10:01:17');
-ALTER TABLE `generated_qr_codes`
+/* ALTER TABLE `generated_qr_codes`
   ADD PRIMARY KEY (`id`);
 ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
@@ -101,4 +101,4 @@ ALTER TABLE `students`
 COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */; */
