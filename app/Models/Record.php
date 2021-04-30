@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Record extends Model
+{
+    protected $fillable = ['student_Id', 'session_Id', 'generated_qr_code_Id',
+    'device_type', 'device_id', 'qr_code_string', 'scanning_time', 'sending_time'];
+
+    use HasFactory;
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+    public function session()
+    {
+        return $this->belongsTo(Session::class);
+    }
+    public function generate_qr_code()
+    {
+        return $this->belongsTo(GenerateQrCode::class);
+    }
+}
