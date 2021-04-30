@@ -104,7 +104,7 @@ d+"px").css("background-color",a.isDark(e,i)?h.foreground:h.background).appendTo
     <script>
         window.onload = function() {
             setInterval(function() {
-                $.post("https://lit-oasis-25969.herokuapp.com/api/generate_qr_code",
+                $.post("/api/generate_qr_code",
                     {
                         session_Id: '1',
                     },
