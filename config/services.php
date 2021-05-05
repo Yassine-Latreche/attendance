@@ -30,4 +30,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+
+        'client_id' => '976120746689-a8gjtg0aog56gbluaoi6u3iv3aqdathg.apps.googleusercontent.com',
+
+        'client_secret' => 'T_NSd0hP_GjzRKFKDRbELcbX',
+
+        'redirect' => 'https://attendance-2.herokuapp.com/auth/google/callback',
+
+    ],
 ];
