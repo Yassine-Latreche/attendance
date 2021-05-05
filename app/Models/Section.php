@@ -20,7 +20,7 @@ class Section extends Model
     }
     public function session()
     {
-        return $this->hasMany(Session::class);
+        return $this->hasMany(Lecture::class);
     }
 
     //

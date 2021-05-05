@@ -15,7 +15,7 @@ use App\Level;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // level
@@ -55,11 +55,11 @@ Route::post('room', 'RoomController@store');
 Route::put('room/{room}', 'RoomController@update');
 Route::delete('room/{room}', 'RoomController@delete');
 // session
-Route::get('session', 'SessionController@index');
-Route::get('session/{session}', 'SessionController@show');
-Route::post('session', 'SessionController@store');
-Route::put('session/{session}', 'SessionController@update');
-Route::delete('session/{session}', 'SessionController@delete');
+Route::get('session', 'LectureController@index');
+Route::get('session/{session}', 'LectureController@show');
+Route::post('session', 'LectureController@store');
+Route::put('session/{session}', 'LectureController@update');
+Route::delete('session/{session}', 'LectureController@delete');
 // record
 Route::get('record', 'RecordController@index');
 Route::get('record/{record}', 'RecordController@show');

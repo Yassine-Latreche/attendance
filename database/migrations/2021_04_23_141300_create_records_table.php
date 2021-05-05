@@ -16,7 +16,7 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_Id');
-            $table->foreignId('session_Id');  
+            $table->foreignId('lecture_Id');  
             $table->foreignId('generated_qr_code_Id');  
             $table->string('device_type');
             $table->string('device_id');     

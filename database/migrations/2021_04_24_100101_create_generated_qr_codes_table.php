@@ -15,7 +15,7 @@ class CreateGeneratedQrCodesTable extends Migration
     {
         Schema::create('generated_qr_codes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('session_Id');  
+            $table->foreignId('lecture_Id');  
             $table->string('qr_code_string');
             $table->timestamps();
         });

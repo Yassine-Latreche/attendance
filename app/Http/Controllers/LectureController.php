@@ -1,19 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Session;
+use App\Models\Lecture;
 use Illuminate\Http\Request;
 
-class SessionController extends Controller
+class LectureController extends Controller
 {
     public function index()
     {
-        return Session::all();
+        return Lecture::all();
     }
  
     public function show($id)
     {
-        return Session::find($id);
+        return Lecture::find($id);
     }
 
     public function store(Request $request) {
@@ -22,8 +22,8 @@ class SessionController extends Controller
             'starting' => date('H:i:s',strtotime($request->get('starting'))),
             'ending' => date('H:i:s',strtotime($request->get('ending')))
         ]);
-        $session = new Session($request->all());
-        $session->save();
+        $lecture = new Lecture($request->all());
+        $lecture->save();
 
         return "well done";
     }
@@ -35,16 +35,16 @@ class SessionController extends Controller
             'starting' => date('H:i:s',strtotime($request->get('starting'))),
             'ending' => date('H:i:s',strtotime($request->get('ending')))
         ]);
-        $session = Session::findOrFail($id);
-        $session->update($request->all());
+        $lecture = Lecture::findOrFail($id);
+        $lecture->update($request->all());
 
-        return $session;
+        return $lecture;
     }
 
     public function delete(Request $request, $id)
     {
-        $session = Session::findOrFail($id);
-        $session->delete();
+        $lecture = Lecture::findOrFail($id);
+        $lecture->delete();
 
         return 204;
     }

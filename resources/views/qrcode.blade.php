@@ -106,7 +106,7 @@ d+"px").css("background-color",a.isDark(e,i)?h.foreground:h.background).appendTo
             setInterval(function() {
                 $.post("/api/generate_qr_code",
                     {
-                        session_Id: '1',
+                        lecture_Id: '1',
                     },
                     function(data, status){
                         $('#qrcode').empty();

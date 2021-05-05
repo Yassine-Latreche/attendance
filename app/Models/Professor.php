@@ -12,6 +12,6 @@ class Professor extends Model
     use HasFactory;
     public function session()
     {
-        return $this->hasMany(Session::class);
+        return $this->hasMany(Lecture::class);
     }
 }
