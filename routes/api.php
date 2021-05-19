@@ -74,4 +74,4 @@ Route::post('generate_qr_code', 'GeneratedQrCodeController@store');
 Route::delete('generate_qr_code/{qr_code}', 'GeneratedQrCodeController@delete'); */
 
 /*--------- FIND STUDENT BY EMAIL ---------*/
-Route::get('student/search/{email}', 'StudentController@findByEmail');
+Route::post('student/search', 'StudentController@findByEmail');
