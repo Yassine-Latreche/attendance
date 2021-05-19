@@ -64,5 +64,3 @@ class StudentController extends Controller
         return $response;
     }
 }
-}
-
