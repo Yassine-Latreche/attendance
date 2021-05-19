@@ -62,8 +62,8 @@ class StudentController extends Controller
     {
         $theonewefound = Student::where('email', $request->get('email'))->first();
         $theonewefound->level_Id = Level::findOrFail($theonewefound->level_Id)->level;
-        $theonewefound->section = Section::findOrFail($theonewefound->section_Id)->section;
-        $theonewefound->group_Id = Group::findOrFail($theonewefound->group_Id)->group;
-        return $theonewefound;
+        /* $theonewefound->section = Section::findOrFail($theonewefound->section_Id)->section;
+         */$theonewefound->group_Id = Group::findOrFail($theonewefound->group_Id)->group;
+        return Section::findOrFail($theonewefound->section_Id)->section;
     }
 }
