@@ -58,7 +58,7 @@ class StudentController extends Controller
     }
 
     // Custom functions
-    public function findByEmail($Request $request)
+    public function findByEmail(Request $request)
     {
         $response =  Student::where('email', $request->get('email'))->get()[0];
         $response->level_Id = Level::findOrFail($response->level_Id)->level;
