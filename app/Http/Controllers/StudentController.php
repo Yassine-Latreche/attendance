@@ -64,6 +64,6 @@ class StudentController extends Controller
         $theonewefound->level_Id = Level::findOrFail($theonewefound->level_Id)->level;
         $theonewefound->section_Id = Section::findOrFail($theonewefound->section_Id)->section;
         $theonewefound->group_Id = Group::findOrFail($theonewefound->group_Id)->group;
-        return $respontheonewefoundse;
+        return $theonewefound;
     }
 }
