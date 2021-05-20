@@ -60,10 +60,21 @@ class StudentController extends Controller
     // Custom functions
     public function findByEmail(Request $request)
     {
-        $theonewefound = Student::where('email', $request->get('email'))->first();
-        $theonewefound->level_Id = Level::findOrFail($theonewefound->level_Id)->level;
-        $theonewefound->section_Id = Section::findOrFail($theonewefound->section_Id)->section;
-        $theonewefound->group_Id = Group::findOrFail($theonewefound->group_Id)->group;
-        return $theonewefound;
+        $response = Student::where('email', $request->get('email'))->first();
+        if ($response  == "") {
+            return "student not found";
+        } else {
+            try
+            {
+                $response->level_Id = Level::findOrFail($response->level_Id)->level;
+                $response->section_Id = Section::findOrFail($response->section_Id)->section;
+                $response->group_Id = Group::findOrFail($response->group_Id)->group;
+                return $response;
+            }
+            catch(ModelNotFoundException $e)
+            {
+                return "student not found";
+            }
+        }
     }
 }
