@@ -73,7 +73,8 @@ class StudentController extends Controller
             }
             catch(ModelNotFoundException $e)
             {
-                return "student not found";
+                return ("level/section/group data is wrong, try checking student details and level/section/group\n
+                level_id: $response->level_Id, /section_id: $response->section_Id, /group_id: $response->group_Id");
             }
         }
     }
