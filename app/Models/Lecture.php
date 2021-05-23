@@ -44,5 +44,5 @@ class Lecture extends Model
         {
             return $this->belongsTo(Module::class);
         }
-    
+     
 }
