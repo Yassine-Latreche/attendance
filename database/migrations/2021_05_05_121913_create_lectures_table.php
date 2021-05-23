@@ -15,6 +15,7 @@ class CreateLecturesTable extends Migration
     {
         Schema::create('lectures', function (Blueprint $table) {
             $table->id();      
+            $table->foreignId('module_Id');       
             $table->foreignId('professor_Id');       
             $table->boolean('is_In_Group');
             $table->foreignId('group_Id');

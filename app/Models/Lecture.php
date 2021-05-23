@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lecture extends Model
 {
     
-        protected $fillable = ['professor_Id', 'is_in_group', 'group_Id',
+        protected $fillable = ['module_Id','professor_Id', 'is_in_group', 'group_Id',
         'is_in_section', 'section_Id', 'lecture_type', 'date',
         'starting', 'ending'];
     
@@ -39,6 +39,10 @@ class Lecture extends Model
         public function professor()
         {
             return $this->belongsTo(Professor::class);
+        }
+        public function module()
+        {
+            return $this->belongsTo(Module::class);
         }
     
 }
