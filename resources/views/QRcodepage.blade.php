@@ -137,7 +137,7 @@
                         })
 
                         // Generate and Output QR Code
-                        $('#qrcode').qrcode({width: $('.qr-size').val(),height: $('.qr-size').val(),text: data});
+                        $('#qrcode').qrcode({width: $('.qr-size').val(),height: $('.qr-size').val(),text: data+{{ $lecture_Id }}});
 
                     });
                 // Clear Previous QR Code

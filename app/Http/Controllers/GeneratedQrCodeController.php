@@ -19,7 +19,7 @@ class GeneratedQrCodeController extends Controller
 
     public function store(Request $request) {
         $qrcode = new GeneratedQrCode($request->all());
-        $qrcode->qr_code_string = rand(100000000, 999999999);
+        $qrcode->qr_code_string = rand(100000, 999999);
         $qrcode->save();
 
         return $qrcode->qr_code_string;
