@@ -17,10 +17,6 @@ class RecordController extends Controller
     }
 
     public function store(Request $request) {
-        $request->merge([
-            'scanning_time' => date('H:i:s',strtotime($request->get('scanning_time'))),
-            'sending_time' => date('H:i:s',strtotime($request->get('sending_time')))
-        ]);
         $record = new Record($request->all());
         $record->save();
 

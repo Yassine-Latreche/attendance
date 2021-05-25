@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lecture extends Model
 {
     
-        protected $fillable = ['module_Id','professor_Id', 'is_in_group', 'group_Id',
-        'is_in_section', 'section_Id', 'lecture_type', 'date',
-        'starting', 'ending'];
+        protected $fillable = ['time_tableId', 'presents'];
     
         use HasFactory;
         public function record()
@@ -21,28 +19,12 @@ class Lecture extends Model
         {
             return $this->hasMany(GeneratedQrCode::class);
         }
-    
+
         //
-    
-        public function group()
+
+        public function time_table()
         {
-            return $this->belongsTo(Group::class);
-        }
-        public function room()
-        {
-            return $this->belongsTo(Room::class);
-        }
-        public function section()
-        {
-            return $this->belongsTo(Section::class);
-        }
-        public function professor()
-        {
-            return $this->belongsTo(Professor::class);
-        }
-        public function module()
-        {
-            return $this->belongsTo(Module::class);
+            return $this->belongsTo(TimeTable::class);
         }
      
 }

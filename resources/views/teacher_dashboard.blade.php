@@ -6,8 +6,9 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/projectstyle.css">
 
-
+        <script src="js/jquery-3.6.0.min.js"></script>
         <script>
+            
                     window.addEventListener("load", () => {
             document.body.classList.remove("preload");
         });
@@ -56,7 +57,7 @@
               <i class="material-icons">contact_page</i>
               Contact page
           </a>
-          <a class="nav__link" href="index.html">
+          <a class="nav__link" href="#">
               <i class="material-icons">logout</i>
               Logout
           </a>
@@ -89,7 +90,7 @@
             onok: function () {},
             oncancel: function () {}
         }, options);
-        
+/*         
         const html = `
             <div class="confirm">
                 <div class="confirm__window">
@@ -97,31 +98,56 @@
                         <span class="confirm__title">${options.title}</span>
                         <button class="confirm__close">&times;</button>
                     </div>
+                    <form name="session_generator" method="GET" action="/teacher_dashboard/lecture/scanning" id="session_generator">
                     <div class="confirm__content">
-                        <select class="content__menu">
-                            <option disabled selected>Subject</option>
-                            <option>ISI</option>
-                            <option>POO</option>
-                            <option>SFSD</option>
-                            </select>
-                            <select class="content__menu">
-                            <option disabled selected>group</option>
-                            <option value=1>1</option>
-                            <option value=2>2</option>
-                            <option value=3>3</option>
-                            </select>
-                            <select class="content__menu">
-                            <option disabled selected>timer</option>
-                            <option value=5>5m</option>
-                            <option value=10>10m</option>
-                            <option value=15>15m</option>
-                            <option value=20>20m</option>
-                            </select>
-                        </div>
+                        <select class="content__menu" name="level" id="level" form="session_generator">
+                            <option disabled selected value="0">Level</option>
+                        </select>
+                        <select class="content__menu" name="section" id="section" form="session_generator">
+                            <option disabled selected value="0">Section</option>
+                        </select>
+                        <select class="content__menu" name="group" id="group" form="session_generator">
+                            <option disabled selected value="0">Group</option>
+                        </select>
+                        <select class="content__menu" name="module" id="module" form="session_generator">
+                            <option disabled selected value="0">Module</option>
+                        </select>
+                        <select class="content__menu" name="type" id="type" form="session_generator">
+                            <option disabled selected value="0">Type</option>
+                            <option selected value="cours">Cours</option>
+                            <option selected value="td">TD</option>
+                            <option selected value="tp">TP</option>
+                        </select>
+                    </div>
                     <div class="confirm__buttons">
-                        <button class="confirm__button confirm__button--ok confirm__button--fill">${options.okText}</button>
+                        <input class="confirm__button confirm__button--ok confirm__button--fill" type="submit" name="submit" value="${options.okText}"/>
                         <button class="confirm__button confirm__button--cancel">${options.cancelText}</button>
                     </div>
+                </form>
+                </div>
+            </div>
+          `
+        ;
+ */
+        
+ const html = `
+            <div class="confirm">
+                <div class="confirm__window">
+                    <div class="confirm__titlebar">
+                        <span class="confirm__title">${options.title}</span>
+                        <button class="confirm__close">&times;</button>
+                    </div>
+                    <form name="session_generator" method="GET" action="/teacher_dashboard/lecture/scanning" id="session_generator">
+                    <div class="confirm__content">
+                        <select class="content__menu" name="timetable" id="timetable" form="session_generator">
+                            <option disabled selected value="0">Timetable</option>
+                        </select>
+                    </div>
+                    <div class="confirm__buttons">
+                        <input class="confirm__button confirm__button--ok confirm__button--fill" type="submit" name="submit" value="${options.okText}"/>
+                        <button class="confirm__button confirm__button--cancel">${options.cancelText}</button>
+                    </div>
+                </form>
                 </div>
             </div>
           `
@@ -156,6 +182,64 @@
         });
 
         document.body.appendChild(template.content);
+        /* function getDetails() {
+            $.get("/api/module",
+                function(data, status){
+                    data.forEach((item, index) => {
+                        $('#module').append('<option value="'+item.id+'">'+item.module+'</option>');
+                    });                        
+                });
+            
+            $.get("/api/level",
+                function(data, status){
+                    data.forEach((item, index) => {
+                        $('#level').append('<option value="'+item.id+'">'+item.level+'</option>');
+                    });                        
+                });
+
+            $("#level").change(function(){
+                if ($("#level").val() != "0") {
+                    $.get("/api/level/"+$( "#level" ).val()+"/section/",
+                    function(data, status){
+                        $('#group').empty().append('<option selected disabled value="0">Group</option>');;
+                        $('#section').empty().append('<option value="all">All Sections</option>');
+                        data.forEach((item, index) => {
+                            $('#section').append('<option value="'+item.id+'">'+item.section+'</option>');
+                        });                        
+                    });
+                    $("#section").change(function(){
+                        if ($("#secion").val() != "all") {
+                            $.get("/api/level/"+$( "#level" ).val()+"/section/"+$( "#section" ).val()+"/group/",
+                            function(data, status){
+                                $('#group').empty().append('<option value="all">All Groups</option>');
+                                data.forEach((item, index) => {
+                                    $('#group').append('<option value="'+item.id+'">'+item.group+'</option>');
+                                });                        
+                            });
+
+                        }
+                    });
+                }
+            });
+
+        }
+ */
+        function getDetails() {
+            $.get("/api/timetable",
+                function(data, status){
+                    data.forEach((item, index) => {
+                        var mymodule = '';
+                        $.get("/api/module/"+item.module_Id,
+                            function(datamodule, status){
+                                $('#timetable').append('<option value="'+item.id+'">'+datamodule.module+'</option>');
+                        }); 
+                    });                        
+                });
+            }    
+        getDetails();
+        function go_to_qrcode(){
+
+        }
     },
 
     _close (confirmEl) {
@@ -165,6 +249,7 @@
             document.body.removeChild(confirmEl);
         });
     }
+
 };
 
   </script>

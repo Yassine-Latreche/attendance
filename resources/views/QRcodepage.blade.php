@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
         <link rel="stylesheet" href="/css/projectstyle.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="/js/jquery-3.6.0.min.js"></script>
+        <script src="/js/qrcode.js"></script>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap" rel="stylesheet">
         <script>
@@ -25,6 +26,58 @@
           });
           });
         </script>
+        <style>
+          .qr-code-generator {
+        width: 500px;
+        margin: 0 auto;
+        }
+
+        .qr-code-generator * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        }
+
+        #qrcode {
+        width: 128px;
+        height: 128px;
+        margin: 0 auto;
+        text-align: center;
+        }
+
+        #qrcode a {
+        font-size: 0.8em;
+        }
+
+        .qr-url, .qr-size {
+        padding: 0.5em;
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        }
+
+        .qr-url {
+        width: 79%;
+        }
+
+        .qr-size {
+        width: 20%;
+        }
+
+        .generate-qr-code {
+        display: block;
+        width: 100%;
+        margin: 0.5em 0 0;
+        padding: 0.25em;
+        font-size: 1.2em;
+        border: none;
+        cursor: pointer;
+        background-color: #ffffff00;
+        color: #ffffff00;
+        }
+        </style>
     </head>
 
 
@@ -67,7 +120,37 @@
   <a href="/teacher" style="display: block"> <button onclick="location.href='{{ url('teacher_dashboard') }}'" 
     type="button"class="material-icons floating-btn">exit_to_app</button>
   </a>
-  </body>
+  <script>
+    window.onload = function() {
+            setInterval(function() {
+                $.post("/api/generate_qr_code",
+                    {
+                        lecture_Id: {{ $lecture_Id }},
+                    },
+                    function(data, status){
+                        $('#qrcode').empty();
 
+                        // Set Size to Match User Input
+                        $('#qrcode').css({
+                        'width' : $('.qr-size').val(),
+                        'height' : $('.qr-size').val()
+                        })
+
+                        // Generate and Output QR Code
+                        $('#qrcode').qrcode({width: $('.qr-size').val(),height: $('.qr-size').val(),text: data});
+
+                    });
+                // Clear Previous QR Code
+
+                              //$('.style').css("backgroundColor", colors[rand(colors.length)]);
+            }, 1000);
+        }
+  </script>
+  </body>
+  <input hidden type="number" class="qr-size" value="860" min="20" max="500">
+                
+        <br>
+        
+        <div id="qrcode"></div>
 
 </html>

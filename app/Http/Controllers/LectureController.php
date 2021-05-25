@@ -16,25 +16,17 @@ class LectureController extends Controller
         return Lecture::find($id);
     }
 
-    public function store(Request $request) {
-        $request->merge([
-            'date' => date('Y-m-d',strtotime($request->get('date'))),
-            'starting' => date('H:i:s',strtotime($request->get('starting'))),
-            'ending' => date('H:i:s',strtotime($request->get('ending')))
-        ]);
-        $lecture = new Lecture($request->all());
+    public static function store($time_tableId, $presents = 0) {
+        $lecture = new Lecture();
+        $lecture->time_tableId = $time_tableId;
+        $lecture->presents = $presents;
         $lecture->save();
 
-        return "well done";
+        return $lecture->id;
     }
 
     public function update(Request $request, $id)
     {
-        $request->merge([
-            'date' => date('Y-m-d',strtotime($request->get('date'))),
-            'starting' => date('H:i:s',strtotime($request->get('starting'))),
-            'ending' => date('H:i:s',strtotime($request->get('ending')))
-        ]);
         $lecture = Lecture::findOrFail($id);
         $lecture->update($request->all());
 

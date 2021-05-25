@@ -18,6 +18,12 @@ use App\Level;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+// module
+Route::get('module', 'ModuleController@index');
+Route::get('module/{module}', 'ModuleController@show');
+Route::post('module', 'ModuleController@store');
+Route::put('module/{module}', 'ModuleController@update');
+Route::delete('module/{module}', 'ModuleController@delete');
 // level
 Route::get('level', 'LevelController@index');
 Route::get('level/{level}', 'LevelController@show');
@@ -54,12 +60,18 @@ Route::get('room/{room}', 'RoomController@show');
 Route::post('room', 'RoomController@store');
 Route::put('room/{room}', 'RoomController@update');
 Route::delete('room/{room}', 'RoomController@delete');
-// session
-Route::get('session', 'LectureController@index');
-Route::get('session/{session}', 'LectureController@show');
-Route::post('session', 'LectureController@store');
-Route::put('session/{session}', 'LectureController@update');
-Route::delete('session/{session}', 'LectureController@delete');
+// timetable
+Route::get('timetable', 'TimeTableController@index');
+Route::get('timetable/{timetable}', 'TimeTableController@show');
+Route::post('timetable', 'TimeTableController@store');
+Route::put('timetable/{timetable}', 'TimeTableController@update');
+Route::delete('timetable/{timetable}', 'TimeTableController@delete');
+// lecture
+Route::get('lecture', 'LectureController@index');
+Route::get('lecture/{lecture}', 'LectureController@show');
+Route::post('lecture', 'LectureController@store');
+/* Route::put('lecture/{lecture}', 'LectureController@update');
+Route::delete('lecture/{lecture}', 'LectureController@delete'); */
 // record
 Route::get('record', 'RecordController@index');
 Route::get('record/{record}', 'RecordController@show');

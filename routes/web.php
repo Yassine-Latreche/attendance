@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,13 +33,11 @@ Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');
 Route::get('teacher_dashboard', function () {
     return view('teacher_dashboard');
 });
-Route::get('teacher_dashboard/lecture/scanning', function () {
-    return view('QRcodepage');
-});
+Route::get('teacher_dashboard/lecture/scanning', 'ScanningController@index');
 
-Route::get('login', function () {
+/* Route::get('login', function () {
     return view('loginpage');
-});
+}); */
 Route::get('qr', function () {
     return view('QRcodepage');
 });
