@@ -64,14 +64,14 @@ class GoogleController extends Controller
 
        
 
-            $finduser = User::where('google_id', $user->id)->first();
+            $finduser = User::where('email', $user->email)->first();
 
        
 
             if($finduser){
 
        
-
+                $finduser->forceFill(['google_id'=> $user->id])->save();
                 Auth::login($finduser);
 
       
