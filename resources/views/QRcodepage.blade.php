@@ -1,4 +1,142 @@
-<!DOCTYPE html>
+<x-app-layout>
+  <script src="/js/momentjs.min.js" ></script>
+
+  {{-- <script>window.onload = function () {
+    var date = document.getElementById("date");
+  date.innerHTML = moment().format('dddd, MMMM Do YYYY');
+  setInterval(function() {
+     
+  var hours = document.getElementById("hours");
+  var minutes = document.getElementById("minutes");
+  var seconds = document.getElementById("seconds");
+  var phase = document.getElementById("phase");
+
+  var h = new Date().getHours();
+  var m = new Date().getMinutes();
+  var s = new Date().getSeconds();
+  var am = "AM";
+
+  if (h > 12) {
+      h = h - 12;
+      var am = "PM";
+  }
+
+  h = h < 10 ? "0" + h : h;
+  m = m < 10 ? "0" + m : m;
+  s = s < 10 ? "0" + s : s;
+
+  hours.innerHTML = h;
+  minutes.innerHTML = m;
+  seconds.innerHTML = s;
+  phase.innerHTML = am;
+}, 1000);
+
+}
+</script> --}}
+  <div style="
+
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 75px;
+  background: #f3f3f3;">
+      <div id="time" style="font-size: 2.5rem">
+        <div>
+            <p style="display: inline !important" id="hours"></p>
+            <p style="display: inline !important">:</p>
+            <p style="display: inline !important" id="minutes"></p>
+            <p style="display: inline !important">:</p>
+            <p style="display: inline !important" id="seconds"></p>
+            <p style="display: inline !important"> </p>
+            <p style="display: inline !important" id="phase"></p>
+        </div>
+        <div>
+            <p id="date"></p>
+        </div>
+      </div>
+  </div>
+
+  <div class="py-12">
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg" style="    min-height: 550px;
+          padding-bottom: 25px !important">
+            <script>
+              window.addEventListener("load", myInit, true); function myInit(){
+              function nowtime(){
+     var hours = document.getElementById("hours");
+     var minutes = document.getElementById("minutes");
+     var seconds = document.getElementById("seconds");
+     var phase = document.getElementById("phase");
+   
+     var h = new Date().getHours();
+     var m = new Date().getMinutes();
+     var s = new Date().getSeconds();
+     var am = "AM";
+   
+     if (h > 12) {
+         h = h - 12;
+         var am = "PM";
+     }
+   
+     h = h < 10 ? "0" + h : h;
+     m = m < 10 ? "0" + m : m;
+     s = s < 10 ? "0" + s : s;
+   
+     hours.innerHTML = h;
+     minutes.innerHTML = m;
+     seconds.innerHTML = s;
+     phase.innerHTML = am;
+   
+              }
+                var date = document.getElementById("date");
+  date.innerHTML = moment().format('dddd, MMMM Do YYYY');
+  f2 = setInterval( nowtime()
+    , 1000);
+                      f1 = setInterval(function() {
+                        nowtime()
+                          $.post("/api/generate_qr_code",
+                              {
+                                  lecture_Id: {{ $lecture_Id }},
+                              },
+                              function(data, status){
+                                  $('#qrcode').empty();
+          
+                                  // Set Size to Match User Input
+                                  $('#qrcode').css({
+                                  'width' : '500',
+                                  'height' : '500',
+                                  'margin-bottom': '10'
+                                  })
+          
+                                  // Generate and Output QR Code
+                                  $('#qrcode').qrcode({width: '500',height:'500',text: data+{{ $lecture_Id }}});
+          
+                              });
+                          // Clear Previous QR Code
+          
+                                        //$('.style').css("backgroundColor", colors[rand(colors.length)]);
+                      }, 1000);
+                  }
+            </script>
+            <input hidden type="number" class="qr-size" value="860" min="20" max="500">
+                          
+                  <br>
+                  
+                  <div style="
+                      margin: auto;
+                      
+                  " id="qrcode" ></div>
+          </div>
+      </div>
+  </div>
+  <button id="btnChangeBg" class="material-icons floating-btn" style="font-size: 40px;">qr_code</button>
+
+</x-app-layout>
+
+
+{{-- <!DOCTYPE html>
 <html>
     <head>
         <title>home screen teach</title>
@@ -27,56 +165,7 @@
           });
         </script>
         <style>
-          .qr-code-generator {
-        width: 500px;
-        margin: 0 auto;
-        }
-
-        .qr-code-generator * {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        }
-
-        #qrcode {
-        width: 128px;
-        height: 128px;
-        margin: 0 auto;
-        text-align: center;
-        }
-
-        #qrcode a {
-        font-size: 0.8em;
-        }
-
-        .qr-url, .qr-size {
-        padding: 0.5em;
-        border: 1px solid #ddd;
-        border-radius: 2px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        }
-
-        .qr-url {
-        width: 79%;
-        }
-
-        .qr-size {
-        width: 20%;
-        }
-
-        .generate-qr-code {
-        display: block;
-        width: 100%;
-        margin: 0.5em 0 0;
-        padding: 0.25em;
-        font-size: 1.2em;
-        border: none;
-        cursor: pointer;
-        background-color: #ffffff00;
-        color: #ffffff00;
-        }
+         
         </style>
     </head>
 
@@ -153,4 +242,4 @@
         
         <div id="qrcode"></div>
 
-</html>
+</html> --}}

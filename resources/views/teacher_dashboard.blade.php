@@ -24,50 +24,81 @@
                 nav.classList.remove("nav--open");
             });
         });
+        
         </script>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+        
+                <title>{{ config('app.name', 'Laravel') }}</title>
+        
+                <!-- Fonts -->
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        
+                <!-- Styles -->
+                <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        
+                @livewireStyles
+        
+                <!-- Scripts -->
+                <script src="{{ mix('js/app.js') }}" defer></script>
+                <script src="js/momentjs.min.js" ></script>
     </head>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap" rel="stylesheet">
 <body class="preload">
-  <header class="header">
+  {{-- <header class="header">
       <button class="header__button" id="btnNav" type="button">
           <i class="material-icons">menu</i>
       </button>
       <button class="header__button__profile" type="button">
         <i class="material-icons">person</i>
       </button>
-  </header>
-  <nav class="nav">
-      <div class="nav__links">
-          <a href="{{ url('teacher_dashboard') }}" class="nav__link">
-              <i class="material-icons">home</i>
-              Home
-          </a>
-          <a class="nav__link" href="#">
-              <i class="material-icons">history</i>
-              Archive
-          </a>
-          <a class="nav__link" href="#">
-              <i class="material-icons">contact_support</i>
-              About
-          </a>
-          <a class="nav__link" href="#">
-              <i class="material-icons">contact_page</i>
-              Contact page
-          </a>
-          <a class="nav__link" href="#">
-              <i class="material-icons">logout</i>
-              Logout
-          </a>
-      </div>
-      <div class="nav__overlay"></div>
-  </nav>
-  
+  </header> --}}
+  @livewire('navigation-menu')
+
+  <script>window.onload = function () {
+      function nowtime() {
+        var hours = document.getElementById("hours");
+    var minutes = document.getElementById("minutes");
+    var seconds = document.getElementById("seconds");
+    var phase = document.getElementById("phase");
+
+    var h = new Date().getHours();
+    var m = new Date().getMinutes();
+    var s = new Date().getSeconds();
+    var am = "AM";
+
+    if (h > 12) {
+        h = h - 12;
+        var am = "PM";
+    }
+
+    h = h < 10 ? "0" + h : h;
+    m = m < 10 ? "0" + m : m;
+    s = s < 10 ? "0" + s : s;
+
+    hours.innerHTML = h;
+    minutes.innerHTML = m;
+    seconds.innerHTML = s;
+    phase.innerHTML = am;
+      }
+      nowtime();
+      var date = document.getElementById("date");
+    date.innerHTML = moment().format('dddd, MMMM Do YYYY');
+    setInterval(function() {
+       
+    nowtime();
+}, 1000);
+
+}
+</script>
+
   <button id="btnChangeBg" class="material-icons floating-btn" style="font-size: 40px;">qr_code</button>
-  <button id="btnChangeBg" class="material-icons floating-btn1">add</button>
-  <button id="btnChangeBg" class="material-icons floating-btn2">save</button>
+  {{-- <button id="btnChangeBg" class="material-icons floating-btn1">add</button>
+  <button id="btnChangeBg" class="material-icons floating-btn2">save</button> --}}
 
   <script>
     document.querySelector('#btnChangeBg').addEventListener('click', () => {
@@ -253,7 +284,31 @@
 };
 
   </script>
-<table class="content-table">
+  <div style="
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 75px;
+  background: #f3f3f3;">
+      <div id="time" style="font-size: 2.5rem">
+        <div>
+            <p style="display: inline !important" id="hours"></p>
+            <p style="display: inline !important">:</p>
+            <p style="display: inline !important" id="minutes"></p>
+            <p style="display: inline !important">:</p>
+            <p style="display: inline !important" id="seconds"></p>
+            <p style="display: inline !important"> </p>
+            <p style="display: inline !important" id="phase"></p>
+        </div>
+        <div>
+            <p id="date"></p>
+        </div>
+      </div>
+  </div>
+<table class="content-table" style="    margin-top: 25px;
+">
     <thead>
       <tr>
         <th>Student</th>
@@ -279,7 +334,6 @@
       </tr>
     </tbody>
   </table>
-
 </body>
 
 
