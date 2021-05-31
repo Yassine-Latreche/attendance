@@ -1,48 +1,40 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\ManuallyAddedStudents;
 use Illuminate\Http\Request;
 
 class ManuallyAddedStudentsController extends Controller
 {
     public function index()
     {
-        return TimeTable::all();
+        return ManuallyAddedStudents::all();
     }
  
-    public function show($timetable)
+    public function show($manuallyAddedStudents)
     {
-        return TimeTable::find($timetable);
+        return ManuallyAddedStudents::find($manuallyAddedStudents);
     }
 
     public function store(Request $request) {
-        $request->merge([
-            'starting' => date('H:i:s',strtotime($request->get('starting'))),
-            'ending' => date('H:i:s',strtotime($request->get('ending')))
-        ]);
-        $timetable = new TimeTable($request->all());
-        $timetable->save();
+        $manuallyAddedStudents = new ManuallyAddedStudents($request->all());
+        $manuallyAddedStudents->save();
 
         return "well done";
     }
 
-    public function update(Request $request, $timetable)
+    public function update(Request $request, $manuallyAddedStudents)
     {
-        $request->merge([
-            'starting' => date('H:i:s',strtotime($request->get('starting'))),
-            'ending' => date('H:i:s',strtotime($request->get('ending')))
-        ]);
-        $timetable = TimeTable::findOrFail($timetable);
-        $timetable->update($request->all());
+        $manuallyAddedStudents = ManuallyAddedStudents::findOrFail($manuallyAddedStudents);
+        $manuallyAddedStudents->update($request->all());
 
-        return $timetable;
+        return $manuallyAddedStudents;
     }
 
-    public function delete(Request $request, $timetable)
+    public function delete(Request $request, $manuallyAddedStudents)
     {
-        $timetable = TimeTable::findOrFail($timetable);
-        $timetable->delete();
+        $manuallyAddedStudents = ManuallyAddedStudents::findOrFail($manuallyAddedStudents);
+        $timanuallyAddedStudentsmetable->delete();
 
         return 204;
     }

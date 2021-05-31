@@ -87,3 +87,6 @@ Route::delete('generate_qr_code/{qr_code}', 'GeneratedQrCodeController@delete');
 
 /*--------- FIND STUDENT BY EMAIL ---------*/
 Route::post('student/search', 'StudentController@findByEmail');
+
+/*--------- GET LECTURES ---------*/
+Route::get('lectures/now/{secion}/{group}', 'TimeTableController@get_lectures');
