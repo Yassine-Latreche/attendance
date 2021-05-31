@@ -23,5 +23,12 @@ class DatabaseSeeder extends Seeder
         $path = 'app/database/attendance.sql';
         \DB::unprepared(file_get_contents($path));
         $this->command->info('Country table seeded!');
+
+        DB::table('teams')->insert([
+            'name' => "Teachers",
+            'id' => 55,
+            'user_id' => 15,
+            'personal_team' => 0,
+        ]);
     }
 }

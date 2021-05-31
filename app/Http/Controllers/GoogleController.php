@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\DB;
 
 use Exception;
 
@@ -94,7 +95,16 @@ class GoogleController extends Controller
 
                 ]);
 
-      
+                DB::table('team_user')->insert(
+                    array(
+                           'id' => DB::table('team_user')->lastInsertId() + 5;
+                           'user_id'   =>   $user->id,
+                           'team_id' =>     Team::where('name', 'Teachers')->first()->id,
+                           'role' => 'editor'
+                    )
+                $u = User::find($user->id);
+                $u->current_team_id = Team::where('name', 'Teachers')->first()->id;
+                $u->save();
 
                 Auth::login($newUser);
 
