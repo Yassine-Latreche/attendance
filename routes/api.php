@@ -90,3 +90,6 @@ Route::post('student/search', 'StudentController@findByEmail');
 
 /*--------- GET LECTURES ---------*/
 Route::get('lectures/now/{secion}/{group}', 'TimeTableController@get_lectures');
+
+/*--------- FIND STUDENTS BY LECTURE ---------*/
+Route::post('record/search', 'RecordController@findByLecture');

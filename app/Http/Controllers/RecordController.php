@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Record;
+use App\Models\Student;
+use App\Models\Group;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class RecordController extends Controller
@@ -42,4 +45,27 @@ class RecordController extends Controller
 
         return 204;
     } */
+
+    public function findByLecture(Request $request)
+    {
+        $response = Record::where('lecture_Id', $request->get('lecture_Id'))->get();
+        if ($response  == "") {
+            return "0";
+        } else {
+            try
+            {   
+                foreach ($response as $value) {
+                    $value->group = Group::findOrFail(Student::findOrFail($value->student_Id)->group_Id)->group;
+                    $value->student = Student::findOrFail($value->student_Id)->name;
+                    $value->section = Section::findOrFail(Student::find($value->student_Id)->section_Id)->section;
+                }
+                return $response;
+            }
+            catch(ModelNotFoundException $e)
+            {
+                return ("level/section/group data is wrong, try checking student details and level/section/group\n
+                level_id: $response->level_Id, /section_id: $response->section_Id, /group_id: $response->group_Id");
+            }
+        }
+    }
 }

@@ -60,8 +60,8 @@
 
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg" style="    min-height: 550px;
-          padding-bottom: 25px !important">
+          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg" style="    min-height: 550px; width: 550px;
+          padding-bottom: 25px !important; margin: auto">
             <script>
               window.addEventListener("load", myInit, true); function myInit(){
               function nowtime(){
@@ -131,8 +131,11 @@
           </div>
       </div>
   </div>
-  <button id="btnChangeBg" class="material-icons floating-btn" style="font-size: 40px;">qr_code</button>
-
+  <form name="summaryform" id="summaryform" action="{{ url("teacher_dashboard/summary") }}" method="GET">
+    <input form="summaryform" hidden type="text" name="lecture_Id" id="lecture_Id" value="{{ $lecture_Id }}">
+  <input type="submit" id="btnChangeBg" class="material-icons floating-btn" style="font-size: 40px;" value="check_circle">
+  {{-- <button form="summaryform" id="btnChangeBg" class="material-icons floating-btn" style="font-size: 40px;">check_circle</button>  --}}
+</form>
 </x-app-layout>
 
 

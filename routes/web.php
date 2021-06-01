@@ -22,9 +22,9 @@ Route::get('qrcode', function () {
     return view('qrcode');
 });
 */
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('teacher_dashboard', function () {
+    return view('teacher_dashboard');
+})->name('teacher_dashboard');
 
 Route::get('auth/google', 'GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');
@@ -34,6 +34,7 @@ Route::get('teacher_dashboard', function () {
     return view('teacher_dashboard');
 });
 Route::get('teacher_dashboard/lecture/scanning', 'ScanningController@index');
+Route::get('teacher_dashboard/summary', 'SummaryController@index');
 
 /* Route::get('login', function () {
     return view('loginpage');

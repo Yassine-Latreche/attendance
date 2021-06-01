@@ -98,10 +98,7 @@
                         Logout</div>
             </x-jet-dropdown-link>
         </form>
-        <a class="nav__link" href="#">
-            <i class="material-icons">logout</i>
-            Logout
-        </a>
+        
     </div>
     <div class="nav__overlay"></div>
 </nav>
