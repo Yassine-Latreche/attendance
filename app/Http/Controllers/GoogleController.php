@@ -97,7 +97,7 @@ class GoogleController extends Controller
 
                 DB::table('team_user')->insert(
                     array(
-                           'id' => DB::table('team_user')->lastInsertId() + 5;
+                           'id' => DB::table('team_user')->lastInsertId() + 5,
                            'user_id'   =>   $user->id,
                            'team_id' =>     Team::where('name', 'Teachers')->first()->id,
                            'role' => 'editor'
