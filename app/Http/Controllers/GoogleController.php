@@ -101,7 +101,7 @@ class GoogleController extends Controller
                            'user_id'   =>   $user->id,
                            'team_id' =>     Team::where('name', 'Teachers')->first()->id,
                            'role' => 'editor'
-                    )
+                    ));
                 $u = User::find($user->id);
                 $u->current_team_id = Team::where('name', 'Teachers')->first()->id;
                 $u->save();
