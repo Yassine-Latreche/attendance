@@ -241,21 +241,7 @@
       </tr>
     </thead>
     <tbody id="student_rows">
-      <tr>
-        <td>student1</td>
-        <td>1</td>
-        <td>Present</td>
-      </tr>
-      <tr>
-        <td>student2</td>
-        <td>2</td>
-        <td>Present</td>
-      </tr>
-      <tr>
-        <td>student3</td>
-        <td>3</td>
-        <td>Absent</td>
-      </tr>
+      
     </tbody>
   </table>
 </body>
