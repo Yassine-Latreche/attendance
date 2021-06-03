@@ -66,9 +66,9 @@ class StudentController extends Controller
         } else {
             try
             {
-                $response->level_Id = Level::findOrFail($response->level_Id)->level;
-                $response->section_Id = Section::findOrFail($response->section_Id)->section;
-                $response->group_Id = Group::findOrFail($response->group_Id)->group;
+                $response->level = Level::findOrFail($response->level_Id)->level;
+                $response->section = Section::findOrFail($response->section_Id)->section;
+                $response->group = Group::findOrFail($response->group_Id)->group;
                 return $response;
             }
             catch(ModelNotFoundException $e)

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\TimeTable;
+use App\Models\Section;
+use App\Models\Group;
+use App\Models\Module;
+use App\Models\Professor;
 use Illuminate\Http\Request;
 
 class TimeTableController extends Controller
@@ -47,7 +51,7 @@ class TimeTableController extends Controller
         return 204;
     }
     
-    public function get_lectures($section, $group)
+    public function get_lectures($section_Id, $group_Id)
     {
         // Basic DateAndTime data
         date_default_timezone_set('Africa/Algiers');
@@ -60,33 +64,33 @@ class TimeTableController extends Controller
         $todaylecure = TimeTable::where('day_Of_Week', $today)
             ->where('starting', '<=',  $time_now )
             ->where('ending', '>=',  $time_now )
-            ->orWhere('section_Id', $section)
-            ->orWhere('group_Id', $group)
+            ->orWhere('section_Id', $section_Id)
+            ->orWhere('group_Id', $group_Id)
             ->get()->first();
 
         if ($todaylecure == null) {
             $nextlecture = TimeTable::where('day_Of_Week', $today)
             ->where('starting', '>=',  $time_now )
-            ->orWhere('section_Id', $section)
-            ->orWhere('group_Id', $group)
+            ->orWhere('section_Id', $section_Id)
+            ->orWhere('group_Id', $group_Id)
             ->orderBy("starting")
             ->get()->first();
 
             $n = 1;
             while ($nextlecture == [] && $n < 8) {
                 $nextlecture = TimeTable::where('day_Of_Week',strtolower(date('l',strtotime('+'.$n.' day'))))
-                    ->orWhere('section_Id', $section)
-                    ->orWhere('group_Id', $group)
+                    ->orWhere('section_Id', $section_Id)
+                    ->orWhere('group_Id', $group_Id)
                     ->orderBy("starting")
                     ->get()->first();
                 $n += 1;
             }
             // dd($n);
             // last lecture
-            $lastlecture = TimeTable::where('day_Of_Week', 'LIKE', "%$today%")
+            $lastlecture = TimeTable::where('day_Of_Week', $today)
             ->where('ending', '<=',  $time_now )
-            ->orWhere('section_Id', $section)
-            ->orWhere('group_Id', $group)
+            ->orWhere('section_Id', $section_Id)
+            ->orWhere('group_Id', $group_Id)
             ->orderBy("starting")
             ->get()->first();
 
@@ -94,8 +98,8 @@ class TimeTableController extends Controller
             $days = [];
             while ($lastlecture == [] && $l > -8) {
                 $lastlecture = TimeTable::where('day_Of_Week',strtolower(date('l',strtotime($l.' day'))))
-                    ->orWhere('section_Id', $section)
-                    ->orWhere('group_Id', $group)
+                    ->orWhere('section_Id', $section_Id)
+                    ->orWhere('group_Id', $group_Id)
                     ->orderBy("ending", "desc")
                     ->get()->first();
                 $l -= 1;
@@ -107,42 +111,65 @@ class TimeTableController extends Controller
             // next lecture
             $nextlecture = TimeTable::where('day_Of_Week', $today)
             ->where('starting', '>=',  $time_now )
-            ->orWhere('section_Id', $section)
-            ->orWhere('group_Id', $group)
+            ->orWhere('section_Id', $section_Id)
+            ->orWhere('group_Id', $group_Id)
             ->orderBy("starting")
             ->get()->first();
 
             $n = 1;
             while ($nextlecture == "" && $n <8) {
                 $nextlecture = TimeTable::where('day_Of_Week',strtolower(date('l',strtotime('+'.$n.' day'))))
-                    ->orWhere('section_Id', $section)
-                    ->orWhere('group_Id', $group)
+                    ->orWhere('section_Id', $section_Id)
+                    ->orWhere('group_Id', $group_Id)
                     ->orderBy("starting")
                     ->get()->first();
                     $n += 1;
                 }
             
             // last lecture
-            $lastlecture = TimeTable::where('day_Of_Week', 'LIKE', "%$today%")
+            $lastlecture = TimeTable::where('day_Of_Week', $today)
             ->where('ending', '<=',  $time_now )
-            ->orWhere('section_Id', $section)
-            ->orWhere('group_Id', $group)
+            ->orWhere('section_Id', $section_Id)
+            ->orWhere('group_Id', $group_Id)
             ->orderBy("starting")
             ->get()->first();
 
             $l = -1;
             while ($lastlecture == "" && $l <8) {
                 $lastlecture = TimeTable::where('day_Of_Week',strtolower(date('l',strtotime($l.' day'))))
-                    ->orWhere('section_Id', $section)
-                    ->orWhere('group_Id', $group)
+                    ->orWhere('section_Id', $section_Id)
+                    ->orWhere('group_Id', $group_Id)
                     ->orderBy("ending", "desc")
                     ->get()->first();
                     $l -= 1;
             }
         }
-        return ( ["last" => $lastlecture,
+        $responses = ( ["last" => $lastlecture,
         "now" => $todaylecure,
         "next" => $nextlecture]);
+        foreach ($responses as $key => $lecture) {
+            if ($lecture != null) {
+                try {    if ($lecture->section_Id != null) {
+                        $lecture->section = Section::findOrFail($lecture->section_Id)->section;
+                    }
+                    if ($lecture->group_Id != null) {
+                        $lecture->group = Group::findOrFail($lecture->group_Id)->group;
+                    }
+                    if ($lecture->module_Id != null) {
+                        $lecture->module = Module::findOrFail($lecture->module_Id)->module;
+                    }
+                    if ($lecture->professor_Id != null) {
+                        $lecture->professor = Professor::findOrFail($lecture->professor_Id)->name;
+                    }
+                } catch(ModelNotFoundException $e)
+                {
+                    return ("level/section/group data is wrong, try checking student details and level/section/group\n
+                     /section_id: $response->section_Id, /group_id: $response->group_Id");
+                }
+            }
+        }
+
+        return $responses;
     }
 }
 

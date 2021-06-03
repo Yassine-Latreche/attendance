@@ -110,7 +110,7 @@ class GoogleController extends Controller
 
       
 
-                return redirect()->intended('dashboard');
+                return redirect()->intended('teacher_dashboard');
 
             }
 
