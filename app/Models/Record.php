@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Record extends Model
 {
     protected $fillable = ['student_Id', 'lecture_Id', 'generated_qr_code_Id',
-    'device_type', 'device_id', 'qr_code_string', 'scanning_time', 'sending_time'];
+    'device_type', 'device_id', 'qr_code_string', 'accepted', 'scanning_time'];
 
     use HasFactory;
     public function student()

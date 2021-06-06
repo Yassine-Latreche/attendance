@@ -21,8 +21,8 @@ class CreateRecordsTable extends Migration
             $table->string('device_type');
             $table->string('device_id');     
             $table->string('qr_code_string');
-            $table->time('scanning_time')->nullable();
-            $table->time('sending_time')->nullable();
+            $table->string('accepted');
+            $table->unsignedInteger('scanning_time')->nullable();
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ use App\Models\Record;
 use App\Models\Student;
 use App\Models\Group;
 use App\Models\Section;
+use App\Models\GeneratedQrCode;
 use Illuminate\Http\Request;
 
 class RecordController extends Controller
@@ -20,10 +21,34 @@ class RecordController extends Controller
     }
 
     public function store(Request $request) {
-        $record = new Record($request->all());
-        $record->save();
-
-        return "well done";
+        $answer = new Record($request->all());
+        $generated_qr_code = GeneratedQrCode::where('lecture_Id', $request->get('lecture_Id'))
+            ->where('qr_code_string', $request->get('qr_code_string'))->first();
+        if ($generated_qr_code  == "") {
+            $answer->generated_qr_code_Id = $generated_qr_code->id;
+            $answer->accepted = "rejected";
+            $answer->save();
+            return "rejected";
+        } else {
+            $answer->generated_qr_code_Id = $generated_qr_code->id;
+        }
+        $diff = $request->scanning_time - strtotime($generated_qr_code->created_at);
+        if $diff > 5:
+            $answer->accepted = "rejected";
+            $answer->save();
+            return "rejected";
+        $std_id = $request->student_Id;
+        if (!(Student::find($std_id)->device_type == $request->device_type || 
+            Student::find($std_id)->device_id == $request->device_id)) {
+                $answer->accepted = "rejected";
+                $answer->save();
+                return "rejected";
+        }
+        $answer->accepted = "accepted";
+        $answer->save();
+        return "accepted";
+        
+        // return $answer;
     }
 
 /*     public function update(Request $request, $id)
