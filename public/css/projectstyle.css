@@ -116,24 +116,46 @@ body {
 
 .nav__links {
     position: fixed;
-    top: 0;
+    color:white !important;
+    top: var(--header-height);
+    bottom: 0;
     left: 0;
-    z-index: 2;
-    height: 100vh;
+    height: calc(100vh - var(--header-height));
     width: 250px;
-    background: #ffffff;
-    transform: translateX(-250px);
-    transition: transform 0.3s;
+    background: #2b2b2b;
+    /* transform: translateX(-250px);
+    transition: transform 0.3s; */
 }
 
 .nav--open .nav__links {
     transform: translateX(0);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
+
+.logo_main {
+    display: flex;
+    align-items: center;
+    color:white !important;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 12px 15px;
+    background: transform 0.2s;
+}
+
+.logo_main > i {
+    margin-right: 15px;
+}
+
+.logo_main:hover {
+    border-radius: 10px;
+    background: #2b2b2b;
+}
+
 .nav__link {
     display: flex;
     align-items: center;
-    color: #666666;
+    color:white !important;
     font-weight: bold;
     font-size: 14px;
     text-decoration: none;
@@ -147,6 +169,7 @@ body {
 
 .nav__link:hover {
     background: #eeeeee;
+    color: black !important;
 }
 
 
@@ -396,3 +419,56 @@ body {
     border-width: 2px;
 }
   
+
+/* QR CODE */
+
+.qr-code-generator {
+    width: 500px;
+    margin: 0 auto;
+    }
+
+    .qr-code-generator * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    }
+
+    #qrcode {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto;
+    text-align: center;
+    }
+
+    #qrcode a {
+    font-size: 0.8em;
+    }
+
+    .qr-url, .qr-size {
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    }
+
+    .qr-url {
+    width: 79%;
+    }
+
+    .qr-size {
+    width: 20%;
+    }
+
+    .generate-qr-code {
+    display: block;
+    width: 100%;
+    margin: 0.5em 0 0;
+    padding: 0.25em;
+    font-size: 1.2em;
+    border: none;
+    cursor: pointer;
+    background-color: #ffffff00;
+    color: #ffffff00;
+    }

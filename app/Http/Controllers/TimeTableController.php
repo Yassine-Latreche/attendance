@@ -8,6 +8,9 @@ use App\Models\Module;
 use App\Models\Professor;
 use Illuminate\Http\Request;
 
+use App\Exports\TimeTableExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class TimeTableController extends Controller
 {
     public function index()
@@ -171,6 +174,12 @@ class TimeTableController extends Controller
 
         return $responses;
     }
+
+    public function export() 
+    {
+        return Excel::download(new TimeTableExport, 'timetable.xlsx');
+    }
+
 }
 
 //TimeTable::where('day_Of_Week',strtolower(date('l',strtotime($l.' day'))))

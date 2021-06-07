@@ -176,7 +176,6 @@
                     </div>
                     <div class="confirm__buttons">
                         <input class="confirm__button confirm__button--ok confirm__button--fill" type="submit" name="submit" value="${options.okText}"/>
-                        <button class="confirm__button confirm__button--cancel">${options.cancelText}</button>
                     </div>
                 </form>
                 </div>
@@ -191,7 +190,7 @@
         const confirmEl = template.content.querySelector('.confirm');
         const btnClose = template.content.querySelector('.confirm__close');
         const btnOk = template.content.querySelector('.confirm__button--ok');
-        const btnCancel = template.content.querySelector('.confirm__button--cancel');
+        // const btnCancel = template.content.querySelector('.confirm__button--cancel');
 
         confirmEl.addEventListener('click', e => {
             if (e.target === confirmEl) {
@@ -205,9 +204,9 @@
             this._close(confirmEl);
         });
 
-        [btnCancel, btnClose].forEach(el => {
+        [btnClose].forEach(el => {
             el.addEventListener('click', () => {
-                options.oncancel();
+                //options.oncancel();
                 this._close(confirmEl);
             });
         });

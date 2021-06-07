@@ -30,9 +30,9 @@ Route::get('auth/google', 'GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');
 
 
-Route::get('teacher_dashboard', function () {
-    return view('teacher_dashboard');
-});
+// Route::get('teacher_dashboard', function () {
+//     return view('teacher_dashboard');
+// });
 Route::get('teacher_dashboard/lecture/scanning', 'ScanningController@index');
 Route::get('teacher_dashboard/summary', 'SummaryController@index');
 
@@ -42,3 +42,6 @@ Route::get('teacher_dashboard/summary', 'SummaryController@index');
 Route::get('qr', function () {
     return view('QRcodepage');
 });
+
+
+Route::get('timetable/export/', 'TimeTableController@export');

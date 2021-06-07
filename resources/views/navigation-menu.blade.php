@@ -1,7 +1,8 @@
 <header class="header">
-    <button class="header__button" id="btnNav" type="button">
-        <i class="material-icons">menu</i>
-    </button>
+    <div class="logo_main" style="color:white;">
+        <a href="{{ url('teacher_dashboard') }}">Attendance Project</a>
+        
+    </div>
     {{-- <button class="header__button__profile" type="button">
       <i class="material-icons">person</i>
       
@@ -90,18 +91,18 @@
         <form method="POST" action="{{ route('logout') }}">
             @csrf
 
-            <x-jet-dropdown-link  href="{{ route('logout') }}"
+            <x-jet-dropdown-link style="position: absolute; bottom: 20px; width: 100%!important;" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
                             this.closest('form').submit();">
-                    <div class="nav__link" style="position: absolute; bottom: 20px;">
+                    <div class="nav__link" >
                         <i class="material-icons">logout</i>
                         Logout</div>
             </x-jet-dropdown-link>
         </form>
         
     </div>
-    <div class="nav__overlay"></div>
-</nav>
+{{--     <div class="nav__overlay"></div>
+ --}}</nav>
 {{-- <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

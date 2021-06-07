@@ -48,17 +48,18 @@ class CreateNewUser implements CreatesNewUsers
      */
     protected function createTeam(User $user)
     {
+        // dd($user->id);
         DB::table('team_user')->insert(
             array(
-                   'id' => DB::table('team_user')->lastInsertId() + 5;
+                   'id' => (DB::table('team_user')->count()-1)*10+5 + 10,
                    'user_id'   =>   $user->id,
                    'team_id' =>     Team::where('name', 'Teachers')->first()->id,
                    'role' => 'editor'
-            )
+            ));
         $u = User::find($user->id);
         $u->current_team_id = Team::where('name', 'Teachers')->first()->id;
         $u->save();
-       );
+       
         // $user->ownedTeams()->save(Team::forceCreate([
         //     'user_id' => $user->id,
         //     'name' => explode(' ', $user->name, 2)[0]."'s Team",
