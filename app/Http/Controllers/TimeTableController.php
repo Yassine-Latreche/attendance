@@ -54,6 +54,18 @@ class TimeTableController extends Controller
         return 204;
     }
     
+    private function sectionOrGroup($data, $section_Id, $group_Id) {
+        $withsec = $data->where('section_Id')->get()->first();
+        $withgrp = $data->where('group_Id')->get()->first();
+        if ($withsec != null) {
+            return $withsec;
+        } else if ($withgrp != null) {
+            return $withgrp;
+        } else {
+            return null;
+        }
+    }
+
     public function get_lectures($section_Id, $group_Id)
     {
         // Basic DateAndTime data
@@ -64,47 +76,50 @@ class TimeTableController extends Controller
         // Getting lectures of today
         $nextlecture = [];
         $lastlecture = [];
-        $todaylecure = TimeTable::where('day_Of_Week', $today)
+        $todaylecture = $this->sectionOrGroup(
+            TimeTable::where('day_Of_Week', $today)
             ->where('starting', '<=',  $time_now )
-            ->where('ending', '>=',  $time_now )
-            ->orWhere('section_Id', $section_Id)
-            ->orWhere('group_Id', $group_Id)
-            ->get()->first();
-
-        if ($todaylecure == null) {
-            $nextlecture = TimeTable::where('day_Of_Week', $today)
+            ->where('ending', '>=',  $time_now ),
+            $section_Id,
+            $group_Id
+        );
+        // dd($todaylecture);
+        if ($todaylecture == null) {
+            $nextlecture = $this->sectionOrGroup(
+                TimeTable::where('day_Of_Week', $today)
             ->where('starting', '>=',  $time_now )
-            ->orWhere('section_Id', $section_Id)
-            ->orWhere('group_Id', $group_Id)
-            ->orderBy("starting")
-            ->get()->first();
-
+            ->orderBy("starting"),
+            $section_Id,
+            $group_Id
+            );
             $n = 1;
             while ($nextlecture == [] && $n < 8) {
-                $nextlecture = TimeTable::where('day_Of_Week',strtolower(date('l',strtotime('+'.$n.' day'))))
-                    ->orWhere('section_Id', $section_Id)
-                    ->orWhere('group_Id', $group_Id)
-                    ->orderBy("starting")
-                    ->get()->first();
+                $nextlecture = $this->sectionOrGroup(
+                    TimeTable::where('day_Of_Week',strtolower(date('l',strtotime('+'.$n.' day'))))
+                    ->orderBy("starting"),
+                    $section_Id,
+                    $group_Id
+                );
                 $n += 1;
             }
             // dd($n);
             // last lecture
-            $lastlecture = TimeTable::where('day_Of_Week', $today)
-            ->where('ending', '<=',  $time_now )
-            ->orWhere('section_Id', $section_Id)
-            ->orWhere('group_Id', $group_Id)
-            ->orderBy("starting")
-            ->get()->first();
-
+            $lastlecture = $this->sectionOrGroup(
+                TimeTable::where('day_Of_Week', $today)
+                ->where('ending', '<=',  $time_now )
+                ->orderBy("starting"),
+                $section_Id,
+                $group_Id
+            );
             $l = -1;
             $days = [];
             while ($lastlecture == [] && $l > -8) {
-                $lastlecture = TimeTable::where('day_Of_Week',strtolower(date('l',strtotime($l.' day'))))
-                    ->orWhere('section_Id', $section_Id)
-                    ->orWhere('group_Id', $group_Id)
-                    ->orderBy("ending", "desc")
-                    ->get()->first();
+                $lastlecture = $this->sectionOrGroup(
+                    TimeTable::where('day_Of_Week',strtolower(date('l',strtotime($l.' day'))))
+                    ->orderBy("ending", "desc"),
+                    $section_Id,
+                    $group_Id
+                );
                 $l -= 1;
             }
             // return [$lastlecture, $todaylecure, $nextlecture];
@@ -112,43 +127,46 @@ class TimeTableController extends Controller
         } else {
             // dd("else");
             // next lecture
-            $nextlecture = TimeTable::where('day_Of_Week', $today)
-            ->where('starting', '>=',  $time_now )
-            ->orWhere('section_Id', $section_Id)
-            ->orWhere('group_Id', $group_Id)
-            ->orderBy("starting")
-            ->get()->first();
-
+            $nextlecture = $this->sectionOrGroup(
+                TimeTable::where('day_Of_Week', $today)
+                ->where('starting', '>=',  $time_now )
+                ->orderBy("starting"),
+                $section_Id,
+                $group_Id
+            );
             $n = 1;
             while ($nextlecture == "" && $n <8) {
-                $nextlecture = TimeTable::where('day_Of_Week',strtolower(date('l',strtotime('+'.$n.' day'))))
-                    ->orWhere('section_Id', $section_Id)
-                    ->orWhere('group_Id', $group_Id)
-                    ->orderBy("starting")
-                    ->get()->first();
-                    $n += 1;
-                }
+                $nextlecture = $this->sectionOrGroup(
+                    TimeTable::where('day_Of_Week',strtolower(date('l',strtotime('+'.$n.' day'))))
+                    ->orderBy("starting"),
+                    $section_Id,
+                    $group_Id
+                );
+                $n += 1;
+            }
             
             // last lecture
-            $lastlecture = TimeTable::where('day_Of_Week', $today)
-            ->where('ending', '<=',  $time_now )
-            ->orWhere('section_Id', $section_Id)
-            ->orWhere('group_Id', $group_Id)
-            ->orderBy("starting")
-            ->get()->first();
+            $lastlecture = $this->sectionOrGroup(
+                TimeTable::where('day_Of_Week', $today)
+                ->where('ending', '<=',  $time_now )
+                ->orderBy("starting"),
+                $section_Id,
+                $group_Id
+            );
 
             $l = -1;
             while ($lastlecture == "" && $l <8) {
-                $lastlecture = TimeTable::where('day_Of_Week',strtolower(date('l',strtotime($l.' day'))))
-                    ->orWhere('section_Id', $section_Id)
-                    ->orWhere('group_Id', $group_Id)
-                    ->orderBy("ending", "desc")
-                    ->get()->first();
-                    $l -= 1;
+                $lastlecture = $this->sectionOrGroup(
+                    TimeTable::where('day_Of_Week',strtolower(date('l',strtotime($l.' day'))))
+                    ->orderBy("ending", "desc"),
+                    $section_Id,
+                    $group_Id
+                );
+                $l -= 1;
             }
         }
         $responses = ( ["last" => $lastlecture,
-        "now" => $todaylecure,
+        "now" => $todaylecture,
         "next" => $nextlecture]);
         foreach ($responses as $key => $lecture) {
             if ($lecture != null) {
