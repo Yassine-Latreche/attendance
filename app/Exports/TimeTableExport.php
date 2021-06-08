@@ -12,9 +12,6 @@ class TimeTableExport implements FromCollection
     */
     public function collection()
     {
-        return new Collection([
-            [1, 2, 3],
-            [4, 5, 6]
-        ]);
+        return TimeTable::all();
     }
 }

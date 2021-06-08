@@ -7,6 +7,9 @@ use App\Models\Group;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
+use App\Exports\StudentRecordsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class StudentController extends Controller
 {
     public function index($level, $section, $group)
@@ -78,4 +81,14 @@ class StudentController extends Controller
             }
         }
     }
+
+    public function exportget(Request $request) 
+    {
+        return view('export');
+    }
+    public function export(Request $request) 
+    {
+        return Excel::download(new StudentRecordsExport($request), 'student.xlsx');
+    }
+
 }

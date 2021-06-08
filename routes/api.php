@@ -89,7 +89,7 @@ Route::delete('generate_qr_code/{qr_code}', 'GeneratedQrCodeController@delete');
 Route::post('student/search', 'StudentController@findByEmail');
 
 /*--------- GET LECTURES ---------*/
-Route::get('lectures/now/{secion}/{group}', 'TimeTableController@get_lectures');
+Route::get('lectures/now/{section_Id}/{group_Id}', 'TimeTableController@get_lectures');
 
 /*--------- FIND STUDENTS BY LECTURE ---------*/
 Route::post('record/search', 'RecordController@findByLecture');

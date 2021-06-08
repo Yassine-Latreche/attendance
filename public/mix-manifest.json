@@ -1,8 +1,11 @@
 {
-    "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/projectstyle.css": "/css/projectstyle.css",
+    "/css/jquery-ui.css": "/css/jquery-ui.css",
+
+    "/js/app.js": "/js/app.js",
     "/js/jquery-3.6.0.min.js": "/js/jquery-3.6.0.min.js",
     "/js/qrcode.js": "/js/qrcode.js",
-    "js/momentjs.min.js": "js/momentjs.min.js"
+    "/js/jquery-ui.js": "/js/jquery-ui.js",
+    "/js/momentjs.min.js": "/js/momentjs.min.js"
 }

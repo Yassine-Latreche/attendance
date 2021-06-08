@@ -153,16 +153,16 @@ class TimeTableController extends Controller
         foreach ($responses as $key => $lecture) {
             if ($lecture != null) {
                 try {    if ($lecture->section_Id != null) {
-                        $lecture->section = Section::findOrFail($lecture->section_Id)->section;
+                        $lecture->section = Section::find($lecture->section_Id)->section;
                     }
                     if ($lecture->group_Id != null) {
-                        $lecture->group = Group::findOrFail($lecture->group_Id)->group;
+                        $lecture->group = Group::find($lecture->group_Id)->group;
                     }
                     if ($lecture->module_Id != null) {
-                        $lecture->module = Module::findOrFail($lecture->module_Id)->module;
+                        $lecture->module = Module::find($lecture->module_Id)->module;
                     }
                     if ($lecture->professor_Id != null) {
-                        $lecture->professor = Professor::findOrFail($lecture->professor_Id)->name;
+                        $lecture->professor = Professor::find($lecture->professor_Id)->name;
                     }
                 } catch(ModelNotFoundException $e)
                 {
@@ -171,7 +171,6 @@ class TimeTableController extends Controller
                 }
             }
         }
-
         return $responses;
     }
 

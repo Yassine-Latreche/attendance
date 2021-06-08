@@ -411,12 +411,22 @@ body {
     border-bottom: 2px solid #009879;
   }
   
-.content__menu{
-    border: 1px solid #333;
-    margin-left: 15%;
+  .labels {
+      margin-left: 10%;
+    margin-right: 10px;
     text-align:center;
     border-radius: 5px;
     border-width: 2px;
+}
+
+.content__menu{
+    border: 1px solid #333;
+    margin-left: 10%;
+    text-align:center;
+    border-radius: 5px;
+    border-width: 2px;
+    margin-bottom: 15px;
+
 }
   
 

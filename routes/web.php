@@ -45,3 +45,5 @@ Route::get('qr', function () {
 
 
 Route::get('timetable/export/', 'TimeTableController@export');
+Route::get('teacher_dashboard/export/', 'StudentController@exportget');
+Route::post('teacher_dashboard/export/', 'StudentController@export');

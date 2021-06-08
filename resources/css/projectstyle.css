@@ -410,6 +410,12 @@ body {
     border-bottom: 2px solid #009879;
   }
   
+.labels {
+    margin-left: 15%;
+    text-align:center;
+    border-radius: 5px;
+    border-width: 2px;
+}
 .content__menu{
     border: 1px solid #333;
     margin-left: 15%;

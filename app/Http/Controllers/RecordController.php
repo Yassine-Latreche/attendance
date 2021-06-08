@@ -33,10 +33,11 @@ class RecordController extends Controller
             $answer->generated_qr_code_Id = $generated_qr_code->id;
         }
         $diff = $request->scanning_time - strtotime($generated_qr_code->created_at);
-        if $diff > 5:
+        if ($diff > 5){
             $answer->accepted = "rejected";
             $answer->save();
             return "rejected";
+        }
         $std_id = $request->student_Id;
         if (!(Student::find($std_id)->device_type == $request->device_type || 
             Student::find($std_id)->device_id == $request->device_id)) {

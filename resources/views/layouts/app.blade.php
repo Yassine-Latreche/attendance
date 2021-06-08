@@ -9,21 +9,21 @@
         <script src="{{ mix('js/qrcode.js') }}"></script>
         <script>
             
-                    window.addEventListener("load", () => {
-            document.body.classList.remove("preload");
-        });
+        //             window.addEventListener("load", () => {
+        //     document.body.classList.remove("preload");
+        // });
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const nav = document.querySelector(".nav");
+        // document.addEventListener("DOMContentLoaded", () => {
+        //     const nav = document.querySelector(".nav");
 
-            document.querySelector("#btnNav").addEventListener("click", () => {
-                nav.classList.add("nav--open");
-            });
+        //     document.querySelector("#btnNav").addEventListener("click", () => {
+        //         nav.classList.add("nav--open");
+        //     });
 
-            document.querySelector(".nav__overlay").addEventListener("click", () => {
-                nav.classList.remove("nav--open");
-            });
-        });
+        //     document.querySelector(".nav__overlay").addEventListener("click", () => {
+        //         nav.classList.remove("nav--open");
+        //     });
+        // });
         </script>
 
 
@@ -46,6 +46,7 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="{{ mix('js/momentjs.min.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased preload" style="background-color:#e2e2e2">
         <x-jet-banner />
