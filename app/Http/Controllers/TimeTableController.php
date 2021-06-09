@@ -55,8 +55,8 @@ class TimeTableController extends Controller
     }
     
     private function sectionOrGroup($data, $section_Id, $group_Id) {
-        $withsec = $data->where('section_Id')->get()->first();
-        $withgrp = $data->where('group_Id')->get()->first();
+        $withsec = $data->where('section_Id', $section_Id)->get()->first();
+        $withgrp = $data->where('group_Id', $group_Id)->get()->first();
         if ($withsec != null) {
             return $withsec;
         } else if ($withgrp != null) {
@@ -102,7 +102,6 @@ class TimeTableController extends Controller
                 );
                 $n += 1;
             }
-            // dd($n);
             // last lecture
             $lastlecture = $this->sectionOrGroup(
                 TimeTable::where('day_Of_Week', $today)
@@ -122,7 +121,7 @@ class TimeTableController extends Controller
                 );
                 $l -= 1;
             }
-            // return [$lastlecture, $todaylecure, $nextlecture];
+            // return [$lastlecture, $todaylecture, $nextlecture];
 
         } else {
             // dd("else");
