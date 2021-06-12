@@ -72,7 +72,6 @@ class StudentController extends Controller
                 $response->device_id = $request->get('device_id');
                 $response->initialized = 1;
                 $response->save();
-                return $response;
             } else if (!($response->device_type == $request->get('device_type') && $response->device_id == $request->get('device_id'))) {
                 return "student not found";
             }
