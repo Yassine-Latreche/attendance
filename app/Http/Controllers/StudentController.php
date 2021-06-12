@@ -68,10 +68,10 @@ class StudentController extends Controller
         if ($response  == null) {
             return "student not found";
         } else {
-            if ($response->initialized == '0') {
+            if ($response->initialized == '0' || $response->initialized == 0) {
                 $response->device_type = $request->get('device_type');
                 $response->device_id = $request->get('device_id');
-                $response->initialized = '1';
+                $response->initialized = 1;
                 $response->save();
                 return $response;
             } else if (!($response->device_type == $request->get('device_type') && $response->device_id == $request->get('device_id'))) {
