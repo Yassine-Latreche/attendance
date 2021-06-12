@@ -3,6 +3,7 @@ Create Timetable
 @endsection
 <x-app-layout>
   <script>
+    <script src="{{ mix('js/getDetails.js') }}" defer></script>
   $(function() {
     $("#module_Id").select2();  
     $("#professor_Id").select2();  
