@@ -63,7 +63,6 @@ class StudentController extends Controller
     // Custom functions
     public function findByEmail(Request $request)
     {
-        dd($request);
         $response = Student::where('email', $request->get('email'))->first();
         dd($response);
         if ($response  == null) {
