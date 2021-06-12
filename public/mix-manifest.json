@@ -2,10 +2,20 @@
     "/css/app.css": "/css/app.css",
     "/css/projectstyle.css": "/css/projectstyle.css",
     "/css/jquery-ui.css": "/css/jquery-ui.css",
+    "/css/select2.min.css": "/css/select2.min.css",
+    "/css/bootstrap.min.css": "/css/bootstrap.min.css",
+    "/css/select2-bootstrap.min.css": "/css/select2-bootstrap.min.css",
 
     "/js/app.js": "/js/app.js",
+    "/js/getDetails.js": "/js/getDetails.js",
     "/js/jquery-3.6.0.min.js": "/js/jquery-3.6.0.min.js",
     "/js/qrcode.js": "/js/qrcode.js",
     "/js/jquery-ui.js": "/js/jquery-ui.js",
-    "/js/momentjs.min.js": "/js/momentjs.min.js"
+    "/js/momentjs.min.js": "/js/momentjs.min.js",
+    "/js/popper.min.js": "/js/popper.min.js",
+    "/js/bootstrap.min.js": "/js/bootstrap.min.js",
+    "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
+    "/js/d3.v6.min.js": "/js/d3.v6.min.js",
+    "/js/select2.min.js": "/js/select2.min.js"
+
 }

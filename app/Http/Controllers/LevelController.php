@@ -8,38 +8,38 @@ use Illuminate\Http\Request;
 
 class LevelController extends Controller
 {
-    public function index()
+    public static function index()
     {
         return Level::all();
     }
  
-    public function show($id)
+    public static function show($id)
     {
         return Level::find($id);
     }
 
-    public function store(Request $request) {
+    public static function store(Request $request) {
         $level = new Level();
         $level->level = $request->get('level');
         $level->number_of_students = $request->get('number_of_students');
         $level->save();
 
-        return "well done";
+        return "done";
     }
 
-    public function update(Request $request, $id)
+    public static function update(Request $request, $id)
     {
         $level = Level::findOrFail($id);
         $level->update($request->all());
 
-        return $level;
+        return "done";
     }
 
-    public function delete(Request $request, $id)
+    public static function delete(Request $request, $id)
     {
         $level = Level::findOrFail($id);
         $level->delete();
 
-        return 204;
+        return "done";
     }
 }

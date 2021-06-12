@@ -24,8 +24,9 @@ class CreateStudentsTable extends Migration
             $table->integer('phone_number')->unique();
             $table->string('living_area');
             $table->string('willaya_d_origine');
-            $table->string('device_type');
-            $table->string('device_id')->unique();
+            $table->integer('initialized')->default('0');
+            $table->string('device_type')->nullable();
+            $table->string('device_id')->nullable()->unique();
             $table->timestamps();
         });
     }

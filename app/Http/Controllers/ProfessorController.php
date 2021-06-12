@@ -6,36 +6,36 @@ use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
 {
-    public function index()
+    public static function index()
     {
         return Professor::all();
     }
  
-    public function show($id)
+    public static function show($id)
     {
         return Professor::find($id);
     }
 
-    public function store(Request $request) {
+    public static function store(Request $request) {
         $professor = new Professor($request->all());
         $professor->save();
 
-        return "well done";
+        return "done";
     }
 
-    public function update(Request $request, $id)
+    public static function update(Request $request, $id)
     {
         $professor = Professor::findOrFail($id);
         $professor->update($request->all());
 
-        return $professor;
+        return "done";
     }
 
-    public function delete(Request $request, $id)
+    public static function delete(Request $request, $id)
     {
         $professor = Professor::findOrFail($id);
         $professor->delete();
 
-        return 204;
+        return "done";
     }
 }

@@ -6,37 +6,41 @@ use Illuminate\Http\Request;
 
 class ModuleController extends Controller
 {
-    public function index()
+    public static function index()
     {
         return Module::all();
     }
  
-    public function show($id)
+    public static function show($id)
     {
         return Module::find($id);
     }
 
-    public function store(Request $request) {
+    public static function store(Request $request) {
         $module = new Module();
         $module->module = $request->get('module');
-        $module->save();
+        try {
+            $module->save();
+          } catch (\Illuminate\Database\QueryException $e) {
+            return 'error';
+          }
 
-        return "well done";
+        return "done";
     }
 
-    public function update(Request $request, $id)
+    public static function update(Request $request, $id)
     {
         $module = Module::findOrFail($id);
         $module->update($request->all());
 
-        return $module;
+        return "done";
     }
 
-    public function delete(Request $request, $id)
+    public static function delete(Request $request, $id)
     {
         $module = Module::findOrFail($id);
         $module->delete();
 
-        return 204;
+        return "done";
     }
 }

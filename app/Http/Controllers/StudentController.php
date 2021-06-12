@@ -67,6 +67,15 @@ class StudentController extends Controller
         if ($response  == "") {
             return "student not found";
         } else {
+            if ($response->initialized == '0') {
+                $response->device_type = $request->get('device_type');
+                $response->device_id = $request->get('device_id');
+                $response->initialized = '1';
+                $response->save();
+                return $response;
+            } else if (!($response->device_type == $request->get('device_type') && $response->device_id == $request->get('device_id'))) {
+                return "student not found";
+            }
             try
             {
                 $response->level = Level::findOrFail($response->level_Id)->level;

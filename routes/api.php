@@ -31,12 +31,16 @@ Route::post('level', 'LevelController@store');
 Route::put('level/{level}', 'LevelController@update');
 Route::delete('level/{level}', 'LevelController@delete');
 // section
+Route::get('section/{section}', 'SectionController@showspetial');
+//
 Route::get('level/{level}/section', 'SectionController@index');
 Route::get('level/{level}/section/{section}', 'SectionController@show');
 Route::post('level/{level}/section', 'SectionController@store');
 Route::put('level/{level}/section/{section}', 'SectionController@update');
 Route::delete('level/{level}/section/{section}', 'SectionController@delete');
 // group
+Route::get('group/{group}', 'GroupController@showspetial');
+//
 Route::get('level/{level}/section/{section}/group', 'GroupController@index');
 Route::get('level/{level}/section/{section}/group/{group}', 'GroupController@show');
 Route::post('level/{level}/section/{section}/group', 'GroupController@store');

@@ -8,9 +8,11 @@ use App\Models\Group;
 use App\Models\Section;
 use App\Models\Level;
 use App\Models\Lecture;
+use App\Models\TimeTable;
 use App\Models\Module;
 use App\Models\Professor;
 
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -26,35 +28,43 @@ class StudentRecordsExport implements FromArray, WithHeadings
     private $module_Id;
     private $groupNotSection;
 
-    private $month;
+    private $time_tableId;
+    private $timeTableObj;
+
     private $from;
     private $to;
 
     private $lectures;
     private $daytes;
     private $lect_Ids;
-    // function __construct(Request $request) {
-    function __construct() {
+    private $header;
+
+    function __construct(Request $request) {
         setlocale (LC_TIME, 'fr_FR.utf8','fra'); 
+        // dd($request->get('group'));
 
-        $request = [];
-        if ($request->get('group_Id') != "") {
-            $this->groupOrSection = true;
-            $this->group_Id = $request->get('group_Id');
+        $this->professor_Id = $request->get('professor');
+        $this->module_Id = $request->get('module');
+
+        $this->from = date($request->get('from'));
+        $this->to = date($request->get('to'));
+
+        $this->time_tableId = $request->get('timetable');
+        $this->timeTableObj = TimeTable::find($this->time_tableId);
+
+
+        if ($this->timeTableObj->is_In_Group == '1') {
+            $this->groupNotSection = true;
+            $this->group_Id = $this->timeTableObj->group_Id;
+            $this->section_Id = Group::find($this->group_Id)->section_Id;
+        }else if ($this->timeTableObj->is_In_Section == '1') {
+            $this->groupNotSection = false;
+            $this->section_Id = $this->timeTableObj->section_Id;
         }
-        if ($request->get('section_Id') != "") {
-            $this->groupOrSection = false;
-            $this->section_Id = $request->get('section_Id');
-        }
-        $this->professor_Id = $request->get('professor_Id');
-        $this->module_Id = $request->get('module_Id');
-        $this->month = $request->get('month');
 
-        $this->from = date('2021-05-01');
-        $this->to = date('2021-07-02');
-
-
-        $this->lectures = Lecture::whereBetween('created_at', [$this->from, $this->to])->get(['id', 'created_at'])->toArray();
+        $this->lectures = Lecture::whereBetween('created_at', [$this->from, $this->to])
+                        ->where('time_tableId', $this->timeTableObj->id)
+                        ->get(['id', 'created_at'])->toArray();
         $this->daytes = ['Nom Et Prenom'];
         $this->lect_Ids = [];
         // dd($lectures->get(['id', 'created_at'])->toArray());
@@ -67,19 +77,34 @@ class StudentRecordsExport implements FromArray, WithHeadings
                 }
             }
         }
+        array_push($this->daytes, 'Total des présences', 'Total des absences', 'Pourcentage');
+        $this->header = [];
+        array_push($this->header,
+                ['Module: ', Module::find($this->timeTableObj->module_Id)->module,
+                'Level: ', Level::find($this->timeTableObj->level_Id)->level,
+                'Section: ', Section::find($this->section_Id)->section,
+                'Group: ', ($this->groupNotSection ? Group::find($this->group_Id) : 'All') ]);
+        array_push($this->header,
+                ['From: ', $request->get('from'),
+                'To: ', $request->get('to')]);
+        array_push($this->header, $this->daytes);
     }
 
     public function headings(): array
     {
-        return $this->daytes;
+        return $this->header;
     }
 
     public function array(): array
     {
         $response = [];
-        $students = Student::where('email', 'ya.latreche@esi-sba.dz')->get(['name', 'id'])->toArray();
+        $students = $this->groupNotSection ? 
+                        Student::where('group_Id', $this->group_Id)->get(['name', 'id'])->toArray() 
+                        : Student::where('section_Id', $this->section_Id)->get(['name', 'id'])->toArray();
         foreach ($students as $key => $std) {
             $tmp = [];
+            $pres = 0;
+            $abs = 0;
             foreach ($std as $var => $value) {
                 if ($var == "name") {
                     array_push($tmp, $value);
@@ -91,12 +116,15 @@ class StudentRecordsExport implements FromArray, WithHeadings
                             ->get()->toArray();
                         if (count($rcrd) == 0) {
                             array_push($tmp, "A");
+                            $abs += 1;
                         } else {
                             array_push($tmp, "P");
+                            $pres += 1;
                         }
                     }
                 }
             }
+            array_push($tmp, strval($pres), strval($abs), strval(round($pres/ count($this->lect_Ids), 4)*100).'%');
             array_push($response, $tmp);
         }
         return $response;

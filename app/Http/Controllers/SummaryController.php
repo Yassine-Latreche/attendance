@@ -11,10 +11,4 @@ class SummaryController extends Controller
         return view('summary',
             $data);
     }
-    // public function index(Request $request) {
-    //     $lecture_Id = LectureController::store($request->all()['timetable'], 0);
-    //     $data = ['lecture_Id' => $lecture_Id];
-    //     return view('QRcodepage',
-    //         $data);
-    // }
 }

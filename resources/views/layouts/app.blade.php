@@ -1,76 +1,67 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="{{ mix('css/projectstyle.css') }}">
 
-        <script src="{{ mix('js/jquery-3.6.0.min.js') }}"></script>
-        <script src="{{ mix('js/qrcode.js') }}"></script>
-        <script>
-            
-        //             window.addEventListener("load", () => {
-        //     document.body.classList.remove("preload");
-        // });
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ mix('css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/select2-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/projectstyle.css') }}">
 
-        // document.addEventListener("DOMContentLoaded", () => {
-        //     const nav = document.querySelector(".nav");
+    <script src="{{ mix('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ mix('js/qrcode.js') }}"></script>
+    <script src="{{ mix('js/select2.min.js') }}"></script>
 
-        //     document.querySelector("#btnNav").addEventListener("click", () => {
-        //         nav.classList.add("nav--open");
-        //     });
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        //     document.querySelector(".nav__overlay").addEventListener("click", () => {
-        //         nav.classList.remove("nav--open");
-        //     });
-        // });
-        </script>
+    <title>@yield('page-title') - {{ config('app.name') }}</title>
 
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap" rel="stylesheet">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    @livewireStyles
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/momentjs.min.js') }}" defer></script>
+    <script src="{{ mix('js/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="{{ mix('js/bootstrap.min.js') }}" defer></script>
+    <script src="{{ mix('js/popper.min.js') }}" defer></script>
+    <script>
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        $.fn.select2.defaults.set("theme", "bootstrap");
 
-        @livewireStyles
+    </script>
+</head>
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="{{ mix('js/momentjs.min.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased preload" style="background-color:#e2e2e2">
-        <x-jet-banner />
+<body class="font-sans antialiased" style="background-color:#e2e2e2">
+    <x-jet-banner />
 
-        <div class="min-h-screen ">
-            @livewire('navigation-menu')
+    <div class="min-h-screen ">
+        @livewire('navigation-menu')
+        <!-- Page Content -->
+        <main style="
+            margin-top: 75px;
+            max-width: 70vw;
+            margin-left: calc(10vw + 250px);
+            margin-right: calc(10vw);">
+            @include('flash-message')
+            {{ $slot }}
+        </main>
+    </div>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    @stack('modals')
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+    @livewireScripts
+</body>
 
-        @stack('modals')
-
-        @livewireScripts
-    </body>
 </html>

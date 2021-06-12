@@ -20,6 +20,8 @@ return array(
     'App\\Actions\\Jetstream\\UpdateTeamName' => $baseDir . '/app/Actions/Jetstream/UpdateTeamName.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Exports\\StudentRecordsExport' => $baseDir . '/app/Exports/StudentRecordsExport.php',
+    'App\\Exports\\TimeTableExport' => $baseDir . '/app/Exports/TimeTableExport.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\GeneratedQrCodeController' => $baseDir . '/app/Http/Controllers/GeneratedQrCodeController.php',
     'App\\Http\\Controllers\\GoogleController' => $baseDir . '/app/Http/Controllers/GoogleController.php',

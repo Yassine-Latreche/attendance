@@ -13,17 +13,17 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class TimeTableController extends Controller
 {
-    public function index()
+    public static function index()
     {
         return TimeTable::all();
     }
  
-    public function show($timetable)
+    public static function show($timetable)
     {
         return TimeTable::find($timetable);
     }
 
-    public function store(Request $request) {
+    public static function store(Request $request) {
         $request->merge([
             'starting' => date('H:i:s',strtotime($request->get('starting'))),
             'ending' => date('H:i:s',strtotime($request->get('ending')))
@@ -34,7 +34,7 @@ class TimeTableController extends Controller
         return "well done";
     }
 
-    public function update(Request $request, $timetable)
+    public static function update(Request $request, $timetable)
     {
         $request->merge([
             'starting' => date('H:i:s',strtotime($request->get('starting'))),
@@ -46,7 +46,7 @@ class TimeTableController extends Controller
         return $timetable;
     }
 
-    public function delete(Request $request, $timetable)
+    public static function delete(Request $request, $timetable)
     {
         $timetable = TimeTable::findOrFail($timetable);
         $timetable->delete();

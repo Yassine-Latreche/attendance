@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'efa2b0048be636baae16e5ef2300323b70dc34fd',
+    'reference' => '7dfa9c3fc82211ecfcb674a8d914e09ea53492bb',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -499,7 +499,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'efa2b0048be636baae16e5ef2300323b70dc34fd',
+      'reference' => '7dfa9c3fc82211ecfcb674a8d914e09ea53492bb',
     ),
     'laravel/sail' => 
     array (
@@ -1423,6 +1423,22 @@
       array (
       ),
       'reference' => 'b43b05cf43c1b6d849478965062b6ef73e223bb5',
+    ),
+    'twbs/bootstrap' => 
+    array (
+      'pretty_version' => 'v5.0.1',
+      'version' => '5.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '58b1be927f43c779377e478df2d119f2ddf956ca',
+    ),
+    'twitter/bootstrap' => 
+    array (
+      'replaced' => 
+      array (
+        0 => 'v5.0.1',
+      ),
     ),
     'vlucas/phpdotenv' => 
     array (
