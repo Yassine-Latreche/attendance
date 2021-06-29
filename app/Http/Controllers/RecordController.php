@@ -22,9 +22,10 @@ class RecordController extends Controller
 
     public function store(Request $request) {
         $answer = new Record($request->all());
+        // return $request;
         $generated_qr_code = GeneratedQrCode::where('lecture_Id', $request->get('lecture_Id'))
             ->where('qr_code_string', $request->get('qr_code_string'))->first();
-        if ($generated_qr_code  == "") {
+        if ($generated_qr_code  == null) {
             $answer->generated_qr_code_Id = $generated_qr_code->id;
             $answer->accepted = "rejected";
             $answer->save();
@@ -32,6 +33,7 @@ class RecordController extends Controller
         } else {
             $answer->generated_qr_code_Id = $generated_qr_code->id;
         }
+        
         $diff = $request->scanning_time - strtotime($generated_qr_code->created_at);
         if ($diff > 5){
             $answer->accepted = "rejected";
@@ -39,6 +41,8 @@ class RecordController extends Controller
             return "rejected";
         }
         $std_id = $request->student_Id;
+        // dd(Student::find($request->student_Id));
+
         if (!(Student::find($std_id)->device_type == $request->device_type || 
             Student::find($std_id)->device_id == $request->device_id)) {
                 $answer->accepted = "rejected";

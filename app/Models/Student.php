@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     protected $fillable = ['name', 'level_Id', 'section_Id',
-    'group_Id', 'email', 'birthday', 'phone_number',
-    'living_area', 'willaya_d_origine', 'device_type', 'device_id'];
+    'group_Id', 'email', 'national_Student_Id', 'birthday', 'phone_number',
+    'living_area', 'willaya_d_origine', 'initialized', 'device_type', 'device_id'];
 
     use HasFactory;
     public function record()

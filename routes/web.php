@@ -30,47 +30,62 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('teacher_dashboard/export/', 'StudentController@exportget');
     Route::post('teacher_dashboard/export/', 'StudentController@export');
 
-    /* ---- MODULE ---- */
-    Route::get('teacher_dashboard/module/', 'CRUDController@moduleIndex')->name('moduleIndex');
-    Route::post('teacher_dashboard/module/', 'CRUDController@moduleStore');
-    Route::get('teacher_dashboard/module/{module}', 'CRUDController@moduleEdit');
-    Route::post('teacher_dashboard/module/{module}', 'CRUDController@moduleUpdate');
-    Route::get('teacher_dashboard/module/{module}/delete', 'CRUDController@moduleDelete');
+    Route::middleware('CheckTeams')->group(function () {
 
-    /* ---- LEVEL ---- */
-    Route::get('teacher_dashboard/level/', 'CRUDController@levelIndex')->name('levelIndex');
-    Route::post('teacher_dashboard/level/', 'CRUDController@levelStore');
-    Route::get('teacher_dashboard/level/{level}', 'CRUDController@levelEdit');
-    Route::post('teacher_dashboard/level/{level}', 'CRUDController@levelUpdate');
-    Route::get('teacher_dashboard/level/{level}/delete', 'CRUDController@levelDelete');
+        /* ---- MODULE ---- */
+        Route::get('teacher_dashboard/module/', 'CRUDController@moduleIndex')->name('moduleIndex');
+        Route::post('teacher_dashboard/module/', 'CRUDController@moduleStore');
+        Route::get('teacher_dashboard/module/{module}', 'CRUDController@moduleEdit');
+        Route::post('teacher_dashboard/module/{module}', 'CRUDController@moduleUpdate');
+        Route::get('teacher_dashboard/module/{module}/delete', 'CRUDController@moduleDelete');
 
-    /* ---- SECTION ---- */
-    Route::get('teacher_dashboard/level/{level}/section', 'CRUDController@sectionIndex')->name('sectionIndex');
-    Route::post('teacher_dashboard/level/{level}/section', 'CRUDController@sectionStore');
-    Route::get('teacher_dashboard/level/{level}/section/{section}', 'CRUDController@sectionEdit');
-    Route::post('teacher_dashboard/level/{level}/section/{section}', 'CRUDController@sectionUpdate');
-    Route::get('teacher_dashboard/level/{level}/section/{section}/delete', 'CRUDController@sectionDelete');
+        /* ---- LEVEL ---- */
+        Route::get('teacher_dashboard/level/', 'CRUDController@levelIndex')->name('levelIndex');
+        Route::post('teacher_dashboard/level/', 'CRUDController@levelStore');
+        Route::get('teacher_dashboard/level/{level}', 'CRUDController@levelEdit');
+        Route::post('teacher_dashboard/level/{level}', 'CRUDController@levelUpdate');
+        Route::get('teacher_dashboard/level/{level}/delete', 'CRUDController@levelDelete');
 
-    /* ---- GROUP ---- */
-    Route::get('teacher_dashboard/level/{level}/section/{section_Id}/group', 'CRUDController@groupIndex')->name('groupIndex');
-    Route::post('teacher_dashboard/level/{level}/section/{section}/group', 'CRUDController@groupStore');
-    Route::get('teacher_dashboard/level/{level}/section/{section}/group/{group}', 'CRUDController@groupEdit');
-    Route::post('teacher_dashboard/level/{level}/section/{section}/group/{group}', 'CRUDController@groupUpdate');
-    Route::get('teacher_dashboard/level/{level}/section/{section}/group/{group}/delete', 'CRUDController@groupDelete');
+        /* ---- SECTION ---- */
+        Route::get('teacher_dashboard/level/{level}/section', 'CRUDController@sectionIndex')->name('sectionIndex');
+        Route::post('teacher_dashboard/level/{level}/section', 'CRUDController@sectionStore');
+        Route::get('teacher_dashboard/level/{level}/section/{section}', 'CRUDController@sectionEdit');
+        Route::post('teacher_dashboard/level/{level}/section/{section}', 'CRUDController@sectionUpdate');
+        Route::get('teacher_dashboard/level/{level}/section/{section}/delete', 'CRUDController@sectionDelete');
 
-    /* ---- PROFESSORS ---- */
-    Route::get('teacher_dashboard/professor/', 'CRUDController@professorIndex')->name('professorIndex');
-    Route::post('teacher_dashboard/professor/', 'CRUDController@professorStore');
-    Route::get('teacher_dashboard/professor/{professor}', 'CRUDController@professorEdit');
-    Route::post('teacher_dashboard/professor/{professor}', 'CRUDController@professorUpdate');
-    Route::get('teacher_dashboard/professor/{professor}/delete', 'CRUDController@professorDelete');
+        /* ---- GROUP ---- */
+        Route::get('teacher_dashboard/level/{level}/section/{section_Id}/group', 'CRUDController@groupIndex')->name('groupIndex');
+        Route::post('teacher_dashboard/level/{level}/section/{section}/group', 'CRUDController@groupStore');
+        Route::get('teacher_dashboard/level/{level}/section/{section}/group/{group}', 'CRUDController@groupEdit');
+        Route::post('teacher_dashboard/level/{level}/section/{section}/group/{group}', 'CRUDController@groupUpdate');
+        Route::get('teacher_dashboard/level/{level}/section/{section}/group/{group}/delete', 'CRUDController@groupDelete');
 
-    /* ---- TIMETABLE ---- */
-    Route::get('teacher_dashboard/timetable/', 'CRUDController@timetableIndex')->name('timetableIndex');
-    Route::post('teacher_dashboard/timetable/', 'CRUDController@timetableStore');
-    Route::get('teacher_dashboard/timetable/{timetable}', 'CRUDController@timetableEdit');
-    Route::post('teacher_dashboard/timetable/{timetable}', 'CRUDController@timetableUpdate');
-    Route::get('teacher_dashboard/timetable/{timetable}/delete', 'CRUDController@timetableDelete');
+        /* ---- STUDENT ---- */
+        Route::get('teacher_dashboard/level/{level}/section/{section_Id}/group/{group}/student', 'CRUDController@studentIndex')->name('studentIndex');
+        Route::post('teacher_dashboard/level/{level}/section/{section}/group/{group}/student', 'CRUDController@studentStore');
+        Route::get('teacher_dashboard/level/{level}/section/{section}/group/{group}/student/{student}', 'CRUDController@studentEdit');
+        Route::post('teacher_dashboard/level/{level}/section/{section}/group/{group}/student/{student}', 'CRUDController@studentUpdate');
+        Route::get('teacher_dashboard/level/{level}/section/{section}/group/{group}/student/{student}/delete', 'CRUDController@studentDelete');
+
+        /* ---- PROFESSORS ---- */
+        Route::get('teacher_dashboard/professor/', 'CRUDController@professorIndex')->name('professorIndex');
+        Route::post('teacher_dashboard/professor/', 'CRUDController@professorStore');
+        Route::get('teacher_dashboard/professor/{professor}', 'CRUDController@professorEdit');
+        Route::post('teacher_dashboard/professor/{professor}', 'CRUDController@professorUpdate');
+        Route::get('teacher_dashboard/professor/{professor}/delete', 'CRUDController@professorDelete');
+
+        /* ---- TIMETABLE ---- */
+        Route::get('teacher_dashboard/timetable/', 'CRUDController@timetableIndex')->name('timetableIndex');
+        Route::post('teacher_dashboard/timetable/', 'CRUDController@timetableStore');
+        Route::get('teacher_dashboard/timetable/{timetable}', 'CRUDController@timetableEdit');
+        Route::post('teacher_dashboard/timetable/{timetable}', 'CRUDController@timetableUpdate');
+        Route::get('teacher_dashboard/timetable/{timetable}/delete', 'CRUDController@timetableDelete');
+
+    });
+    Route::get('teacher_dashboard/checkteams',[
+        'middleware' => 'CheckTeams',
+        'uses' => 'TestController@index',
+     ]);
 });
 Route::get('auth/google', 'GoogleController@redirectToGoogle');
 Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');

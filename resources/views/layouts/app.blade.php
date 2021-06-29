@@ -41,6 +41,7 @@
         $.fn.select2.defaults.set("theme", "bootstrap");
 
     </script>
+    <script src="{{ mix('js/d3.v6.min.js') }}"></script>
 </head>
 
 <body class="font-sans antialiased" style="background-color:#e2e2e2">

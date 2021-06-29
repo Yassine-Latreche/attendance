@@ -28,7 +28,7 @@
             <x-slot name="content">
                 <!-- Account Management -->
                 <div class="block px-4 py-2 text-xs text-gray-400">
-                    {{ __('Manage Account') }}
+                    Gérer son compte
                 </div>
 
                 <x-jet-dropdown-link href="{{ route('profile.show') }}">
@@ -50,7 +50,7 @@
                     <x-jet-dropdown-link href="{{ route('logout') }}"
                              onclick="event.preventDefault();
                                     this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        Se déconnecter
                     </x-jet-dropdown-link>
                 </form>
             </x-slot>
@@ -62,19 +62,43 @@
     <div class="nav__links">
         <a href="{{ url('teacher_dashboard') }}" class="nav__link">
             <i class="material-icons">home</i>
-            Home
+            Accueil
         </a>
         <a class="nav__link" href="{{ url('teacher_dashboard/export/') }}">
             <i class="material-icons">file_download</i>
-            Export Data
+            Exporter Des Données
         </a>
+        @if(Auth::user()->belongsToTeam(App\Models\Team::where('name', 'SuperUsers')->first()))    
+            <br>
+            <hr>
+            <br>
+            <a class="nav__link" href="{{ url('teacher_dashboard/module') }}">
+                <i class="material-icons">description</i>
+                Modules
+            </a>
+            <a class="nav__link" href="{{ url('teacher_dashboard/professor') }}">
+                <i class="material-icons">people</i>
+                Professeurs
+            </a>
+            <a class="nav__link" href="{{ url('teacher_dashboard/level') }}">
+                <i class="material-icons">school</i>
+                Années
+            </a>
+            <a class="nav__link" href="{{ url('teacher_dashboard/timetable') }}">
+                <i class="material-icons">today</i>
+                Emploi du temps
+            </a>
+            <br>
+            <hr>
+            <br>
+        @endif
         <a class="nav__link" href="#">
             <i class="material-icons">contact_support</i>
-            About
+            À propos
         </a>
         <a class="nav__link" href="#">
             <i class="material-icons">contact_page</i>
-            Contact page
+            Page de contact
         </a>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
@@ -84,7 +108,7 @@
                             this.closest('form').submit();">
                     <div class="nav__link" >
                         <i class="material-icons">logout</i>
-                        Logout</div>
+                        Se déconnecter</div>
             </x-jet-dropdown-link>
         </form>
         

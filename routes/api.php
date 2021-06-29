@@ -66,6 +66,7 @@ Route::put('room/{room}', 'RoomController@update');
 Route::delete('room/{room}', 'RoomController@delete');
 // timetable
 Route::get('timetable', 'TimeTableController@index');
+Route::get('timetable/professor/{professor_Id}', 'TimeTableController@indexProfessor');
 Route::get('timetable/{timetable}', 'TimeTableController@show');
 Route::post('timetable', 'TimeTableController@store');
 Route::put('timetable/{timetable}', 'TimeTableController@update');
@@ -94,6 +95,7 @@ Route::post('student/search', 'StudentController@findByEmail');
 
 /*--------- GET LECTURES ---------*/
 Route::get('lectures/now/{section_Id}/{group_Id}', 'TimeTableController@get_lectures');
+Route::get('lectures/professor/{professor_Id}', 'TimeTableController@get_lectures_professor');
 
 /*--------- FIND STUDENTS BY LECTURE ---------*/
 Route::post('record/search', 'RecordController@findByLecture');

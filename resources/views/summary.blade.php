@@ -1,5 +1,5 @@
 @section('page-title')
-Summary
+Résumé
 @endsection
 
 <x-app-layout>
@@ -45,7 +45,7 @@ Summary
       }
       nowtime();
       var date = document.getElementById("date");
-    date.innerHTML = moment().format('dddd, MMMM Do YYYY');
+    date.innerHTML = moment().lang("fr").format('dddd Do MMMM YYYY');
     setInterval(function() {
        
     nowtime();
@@ -69,7 +69,7 @@ Summary
             <p style="display: inline !important" id="phase"></p>
         </div>
         <div>
-            <p id="date"></p>
+            <p id="date" style="text-transform: capitalize;"></p>
         </div>
       </div>
   </div>
@@ -77,13 +77,19 @@ Summary
 ">
     <thead>
       <tr>
-        <th>Student</th>
+        <th>Etudiant</th>
         <th>Section</th>
-        <th>Group</th>
+        <th>Groupe</th>
       </tr>
     </thead>
     <tbody id="student_rows">
       
     </tbody>
   </table>
+  <div id="btnChangeBg" class="floating-btn" style="text-align:center;">
+  <a href="{{ url("teacher_dashboard") }}" class="material-icons " style=" font-size: 40px;">home</a>
+</div>
+  {{-- <form name="summaryform" id="summaryform" action="{{ url("teacher_dashboard") }}" >
+  <input type="submit" id="btnChangeBg" class="material-icons floating-btn" style="font-size: 40px;" value="home">
+</form> --}}
 </x-app-layout>

@@ -1,12 +1,12 @@
 @section('page-title')
-    Export
+Exportation
 @endsection
 
 <x-app-layout>
   <script src="{{ mix('js/getDetails.js') }}" defer></script>
     <script>
         window.onload = function() {
-            getDetails();
+            getDetails("{{ App\Models\Professor::where('user_Id', Auth::user()->id)->first()->id }}");
             $(function() {
                 $("#timetable").select2();
             });
@@ -37,7 +37,8 @@
             }
             nowtime();
             var date = document.getElementById("date");
-            date.innerHTML = moment().format('dddd, MMMM Do YYYY');
+            date.innerHTML = moment().lang("fr").format('dddd Do MMMM YYYY');
+
             setInterval(function() {
 
                 nowtime();
@@ -62,7 +63,7 @@
                 <p style="display: inline !important" id="phase"></p>
             </div>
             <div>
-                <p id="date"></p>
+                <p id="date" style="text-transform: capitalize;"></p>
             </div>
         </div>
     </div>
@@ -77,11 +78,11 @@
                 <div class="form-group form-group-lg">
                     <div class="row align-items-center">
                         <div class="col-1">
-                            <label class="labels" for="timetable">TimeTable:</label>
+                            <label class="labels" for="timetable">Séance:</label>
                         </div>
                         <div class="col-7">
                             <select class="form-control input-lg" name="timetable" id="timetable">
-                                <option disabled selected value="0">TimeTable</option>
+                                <option disabled selected value="0">Séance</option>
                             </select>
                         </div>
                     </div>

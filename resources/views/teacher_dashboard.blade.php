@@ -1,5 +1,5 @@
 @section('page-title')
-Dashboard
+Tableau de bord
 @endsection
 
 <x-app-layout>
@@ -35,17 +35,19 @@ Dashboard
             }
             nowtime();
             var date = document.getElementById("date");
-            date.innerHTML = moment().format('dddd, MMMM Do YYYY');
+            date.innerHTML = moment().lang("fr").format('dddd Do MMMM YYYY');
+
             setInterval(function () {
 
                 nowtime();
             }, 1000);
+            timeTableProfessor("{{ App\Models\Professor::where('user_Id', Auth::user()->id )->first()->id }}");
 
         }
 
         document.querySelector('#btnChangeBg').addEventListener('click', () => {
             Confirm.open({
-                title: 'QR code generator',
+                title: 'Démarrer un session',
                 body: 'hello',
                 onok: () => {
                     window.open(
@@ -60,8 +62,8 @@ Dashboard
                 options = Object.assign({}, {
                     title: '',
                     body: '',
-                    okText: 'Generate',
-                    cancelText: 'Cancel',
+                    okText: 'Démarrer',
+                    cancelText: 'Annuler',
                     onok: function () {},
                     oncancel: function () {}
                 }, options);
@@ -76,11 +78,11 @@ Dashboard
                             <form name="session_generator" method="GET" action="/teacher_dashboard/lecture/scanning" id="session_generator">
                                 <div class="row align-items-center" style="padding: 0 5%; margin: 10px 0;">
                                 <div class="col">
-                                    <label class="labels" for="timetable">TimeTable:</label>
+                                    <label class="labels" for="timetable">Scénce:</label>
                                 </div>
                                 <div class="col-9">
                                     <select class="form-control input-lg" name="timetable" id="timetable">
-                                        <option disabled selected value="0">TimeTable</option>
+                                        <option disabled selected value="0">Scénce</option>
                                     </select>
                                 </div>
                             </div> 
@@ -116,7 +118,8 @@ Dashboard
                     });
                 });
                 document.body.appendChild(template.content);
-                getDetails();
+                getDetails("{{ App\Models\Professor::where('user_Id', Auth::user()->id )->first()->id }}");
+
             },
 
             _close(confirmEl) {
@@ -142,34 +145,59 @@ Dashboard
                 <p style="display: inline !important" id="phase"></p>
             </div>
             <div>
-                <p id="date"></p>
+                <p id="date" style="text-transform: capitalize;"></p>
             </div>
         </div>
     </div>
-    <table class="content-table" style="margin-top: 25px;">
-        <thead>
-            <tr>
-                <th>Student</th>
-                <th>Group</th>
-                <th>Presence status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>student1</td>
-                <td>1</td>
-                <td>Present</td>
-            </tr>
-            <tr>
-                <td>student2</td>
-                <td>2</td>
-                <td>Present</td>
-            </tr>
-            <tr>
-                <td>student3</td>
-                <td>3</td>
-                <td>Absent</td>
-            </tr>
-        </tbody>
-    </table>
+    <div style="
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+      background: #f3f3f3;">
+        <div style="font-size: 2.5rem">
+            <div>
+                <p style="display: inline !important">Bonjour M. {{ Auth::user()->name }}</p>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    @if(Auth::user()->belongsToTeam(App\Models\Team::where('name', 'Teachers')->first()))    
+
+    <div style="
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 10px;
+        background: #f3f3f3;
+        font-weight: bold;
+        color:white;">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card" style="    height: 100%;
+                background-color: #009879; border:0px;">
+                    <div id="last_content" class="card-body">
+                        <h3 id="last_title" class="card-title" style="font-size: 1.5rem"></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card" style="    height: 100%;
+                background-color: #009879; border:0px;">
+                    <div id="now_content" class="card-body">
+                        <h3 id="now_title" class="card-title" style="font-size: 1.5rem"></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card" style="    height: 100%;
+                background-color: #009879; border:0px;">
+                    <div id="next_content" class="card-body">
+                        <h3 id="next_title" class="card-title" style="font-size: 1.5rem"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
 </x-app-layout>

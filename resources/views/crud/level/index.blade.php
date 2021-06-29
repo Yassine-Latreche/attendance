@@ -1,5 +1,5 @@
 @section('page-title')
-Create Level
+Années
 @endsection
 <x-app-layout>
   <script src="/js/momentjs.min.js" ></script>
@@ -9,17 +9,17 @@ Create Level
     background: #f3f3f3;
     margin-bottom: 25px">
     <div class="row" style="font-size: 2rem">
-            <p>Levels :</p>
+            <p>Années:</p>
         </div>
         <br>
   <table class="content-table" id="student_table" >
     <thead>
       <tr>
-        <th style="width : 2rem;">Numero</th>
-        <th>Level</th>
-        <th style="width:10rem;">Voir ces section</th>
-        <th style="width:2rem;">Edit</th>
-        <th style="width:2rem;">Delete</th>
+        <th style="width : 2rem;">Numéro</th>
+        <th>Année</th>
+        <th style="width:10rem;">Voir ses section</th>
+        <th style="width:2rem;">Modifier</th>
+        <th style="width:2rem;">Supprimer</th>
       </tr>
     </thead>
     <tbody id="student_rows">
@@ -44,18 +44,18 @@ Create Level
   border-radius: 10px;
     background: #f3f3f3;">
     <div class="row" style="font-size: 2rem">
-            <p>Add a level:</p>
+            <p>Ajouter une année:</p>
         </div>
         <br>
                 <form class="form" id="levelForm" name="levelForm" role="form" method="POST" >
                 @csrf
                     <div class="form-floating mb-3">
                         <input type="text" hidden name="number_of_students" id="number_of_students" placeholder="number_of_students" value="0">
-                        <input type="text" class="form-control" name="level" id="level" placeholder="Level">
-                        <label for="level">Level ...</label>
+                        <input type="text" class="form-control" name="level" id="level" placeholder="Année">
+                        <label for="level">Année ...</label>
                     </div>
                     <input class="confirm__button confirm__button--ok confirm__button--fill" type="submit" name="submit"
-                        value="Add" />
+                        value="Ajouter" />
                 </form>
   </div>
 </x-app-layout>

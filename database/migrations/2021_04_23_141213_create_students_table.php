@@ -20,6 +20,7 @@ class CreateStudentsTable extends Migration
             $table->foreignId('section_Id');       
             $table->foreignId('group_Id');       
             $table->string('email')->unique();
+            $table->string('national_Student_Id')->unique();
             $table->date('birthday');
             $table->integer('phone_number')->unique();
             $table->string('living_area');

@@ -2,8 +2,11 @@
 
 namespace App\Actions\Fortify;
 
+use Illuminate\Http\Request;
+use App\Http\Controllers\ProfessorController;
 use App\Models\Team;
 use App\Models\User;
+use App\Models\Professor;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -36,6 +39,7 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
                 $this->createTeam($user);
+                $this->createProfessor($user);
             });
         });
     }
@@ -65,5 +69,17 @@ class CreateNewUser implements CreatesNewUsers
         //     'name' => explode(' ', $user->name, 2)[0]."'s Team",
         //     'personal_team' => true,
         // ]));
+    }
+    protected function createProfessor(User $user)
+    {
+        $request = new Request();
+        $request->request->add(['user_Id' => $user->id]);
+        $p = Professor::where('email', $user->email)->first();
+        if ($p == null) {
+            $user->delete();
+            return redirect('/register')->with('error','Vous n\'êtes pas professeur, merci de contacter l\'administration.');
+        } else {
+            $update = ProfessorController::update($request, $p->id);
+        }
     }
 }

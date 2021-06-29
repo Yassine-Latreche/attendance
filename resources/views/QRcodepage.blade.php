@@ -1,5 +1,5 @@
 @section('page-title')
-Scanning
+Numérisation
 @endsection
 <x-app-layout>
   <script src="/js/momentjs.min.js" ></script>
@@ -18,7 +18,7 @@ Scanning
             <p style="display: inline !important" id="phase"></p>
         </div>
         <div>
-            <p id="date"></p>
+            <p id="date" style="text-transform: capitalize;"></p>
         </div>
       </div>
   </div>

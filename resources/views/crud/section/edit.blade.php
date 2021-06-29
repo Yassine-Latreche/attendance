@@ -1,5 +1,5 @@
 @section('page-title')
-Create Section
+Modifier la section
 @endsection
 <x-app-layout>
   <script src="/js/momentjs.min.js" ></script>
@@ -8,7 +8,7 @@ Create Section
   border-radius: 10px;
     background: #f3f3f3;">
     <div class="row" style="font-size: 2rem">
-            <p>Edit a section:</p>
+            <p>Modifier la section:</p>
         </div>
         <br>
                 <form class="form" id="sectionForm" name="sectionForm" role="form" method="POST" >
@@ -20,7 +20,7 @@ Create Section
                         <label for="section">Section ...</label>
                     </div>
                     <input class="confirm__button confirm__button--ok confirm__button--fill" type="submit" name="submit"
-                        value="Edit" />
+                        value="Modifier" />
                 </form>
   </div>
 </x-app-layout>

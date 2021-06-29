@@ -1,5 +1,5 @@
 @section('page-title')
-Create Module
+Modifier le module
 @endsection
 <x-app-layout>
   <script src="/js/momentjs.min.js" ></script>
@@ -8,7 +8,7 @@ Create Module
   border-radius: 10px;
     background: #f3f3f3;">
     <div class="row" style="font-size: 2rem">
-            <p>Edit a module:</p>
+            <p>Modifier le module:</p>
         </div>
         <br>
                 <form class="form" id="moduleForm" name="moduleForm" role="form" method="POST" >
@@ -19,7 +19,7 @@ Create Module
                         <label for="module">Module ...</label>
                     </div>
                     <input class="confirm__button confirm__button--ok confirm__button--fill" type="submit" name="submit"
-                        value="Edit" />
+                        value="Modifier" />
                 </form>
   </div>
 </x-app-layout>

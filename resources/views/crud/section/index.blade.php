@@ -1,6 +1,6 @@
 
 @section('page-title')
-Create Section
+Sections
 @endsection
 <x-app-layout>
   <script src="/js/momentjs.min.js" ></script>
@@ -10,17 +10,17 @@ Create Section
     background: #f3f3f3;
     margin-bottom: 25px">
     <div class="row" style="font-size: 2rem">
-            <p>Sections :</p>
+            <p>Sections:</p>
         </div>
         <br>
   <table class="content-table" id="student_table" >
     <thead>
       <tr>
-        <th style="width : 2rem;">Numero</th>
+        <th style="width : 2rem;">Numéro</th>
         <th>Section</th>
-        <th style="width:10rem;">Voir ces groupes</th>
-        <th style="width:2rem;">Edit</th>
-        <th style="width:2rem;">Delete</th>
+        <th style="width:10rem;">Voir ses groupes</th>
+        <th style="width:2rem;">Modifier</th>
+        <th style="width:2rem;">Supprimer</th>
       </tr>
     </thead>
     <tbody id="student_rows">
@@ -45,7 +45,7 @@ Create Section
   border-radius: 10px;
     background: #f3f3f3;">
     <div class="row" style="font-size: 2rem">
-            <p>Add a section:</p>
+            <p>Ajoutre une section:</p>
         </div>
         <br>
                 <form class="form" id="sectionForm" name="sectionForm" role="form" method="POST" >
@@ -56,7 +56,7 @@ Create Section
                         <label for="section">Section ...</label>
                     </div>
                     <input class="confirm__button confirm__button--ok confirm__button--fill" type="submit" name="submit"
-                        value="Add" />
+                        value="Ajouter" />
                 </form>
   </div>
 </x-app-layout>

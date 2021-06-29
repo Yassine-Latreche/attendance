@@ -81,12 +81,12 @@ class StudentRecordsExport implements FromArray, WithHeadings
         $this->header = [];
         array_push($this->header,
                 ['Module: ', Module::find($this->timeTableObj->module_Id)->module,
-                'Level: ', Level::find($this->timeTableObj->level_Id)->level,
+                'Année: ', Level::find($this->timeTableObj->level_Id)->level,
                 'Section: ', Section::find($this->section_Id)->section,
-                'Group: ', ($this->groupNotSection ? Group::find($this->group_Id) : 'All') ]);
+                'Groupe: ', ($this->groupNotSection ? Group::find($this->group_Id)->group : 'Tous') ]);
         array_push($this->header,
-                ['From: ', $request->get('from'),
-                'To: ', $request->get('to')]);
+                ['Début: ', $request->get('from'),
+                'Fin: ', $request->get('to')]);
         array_push($this->header, $this->daytes);
     }
 

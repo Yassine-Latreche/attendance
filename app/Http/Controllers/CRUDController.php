@@ -17,9 +17,9 @@ class CRUDController extends Controller
     {
         $store = ModuleController::store($request);
         if ($store == 'done') {
-            return back()->with('success','Item created successfully!');
+            return back()->with('success','Élément créé avec succès !');
         } else {
-            return back()->with('error','Item was not inserted!');
+            return back()->with('error','L\'élément n\'a pas été inséré!');
         }
     }
 
@@ -33,9 +33,9 @@ class CRUDController extends Controller
     {
         $update = ModuleController::update($request, $request->get('id'));
         if ($update == 'done') {
-            return redirect()->route('moduleIndex')->with('success','Item edited successfully!');
+            return redirect()->route('moduleIndex')->with('success','Élément modifié avec succès!');
         } else {
-            return redirect()->route('moduleIndex')->with('error','Item was not edited!');
+            return redirect()->route('moduleIndex')->with('error','L\'élément n\'a pas été modifié!');
         }
     }
 
@@ -43,9 +43,9 @@ class CRUDController extends Controller
     {
         $delete = ModuleController::delete($request, $module_Id);
         if ($delete == 'done') {
-            return redirect()->route('moduleIndex')->with('success','Item deleted successfully!');
+            return redirect()->route('moduleIndex')->with('success','Élément supprimé avec succès!');
         } else {
-            return redirect()->route('moduleIndex')->with('error','Item was not deleted!');
+            return redirect()->route('moduleIndex')->with('error','L\'élément n\'a pas été supprimé!');
         }
     }
 
@@ -60,9 +60,9 @@ class CRUDController extends Controller
     {
         $store = LevelController::store($request);
         if ($store == 'done') {
-            return back()->with('success','Item created successfully!');
+            return back()->with('success','Élément créé avec succès !');
         } else {
-            return back()->with('error','Item was not inserted!');
+            return back()->with('error','L\'élément n\'a pas été inséré!');
         }
     }
 
@@ -76,9 +76,9 @@ class CRUDController extends Controller
     {
         $update = LevelController::update($request, $request->get('id'));
         if ($update == 'done') {
-            return redirect()->route('levelIndex')->with('success','Item edited successfully!');
+            return redirect()->route('levelIndex')->with('success','Élément modifié avec succès!');
         } else {
-            return redirect()->route('levelIndex')->with('error','Item was not edited!');
+            return redirect()->route('levelIndex')->with('error','L\'élément n\'a pas été modifié!');
         }
     }
 
@@ -86,9 +86,9 @@ class CRUDController extends Controller
     {
         $delete = LevelController::delete($request, $level_Id);
         if ($delete == 'done') {
-            return redirect()->route('levelIndex')->with('success','Item deleted successfully!');
+            return redirect()->route('levelIndex')->with('success','Élément supprimé avec succès!');
         } else {
-            return redirect()->route('levelIndex')->with('error','Item was not deleted!');
+            return redirect()->route('levelIndex')->with('error','L\'élément n\'a pas été supprimé!');
         }
     }
 
@@ -103,9 +103,9 @@ class CRUDController extends Controller
     {
         $store = SectionController::store($request, $level_Id);
         if ($store == 'done') {
-            return back()->with('success','Item created successfully!');
+            return back()->with('success','Élément créé avec succès !');
         } else {
-            return back()->with('error','Item was not inserted!');
+            return back()->with('error','L\'élément n\'a pas été inséré!');
         }
     }
 
@@ -119,9 +119,9 @@ class CRUDController extends Controller
     {
         $update = SectionController::update($request, $level_Id, $request->get('id'));
         if ($update == 'done') {
-            return redirect()->route('sectionIndex', $level_Id)->with('success','Item edited successfully!');
+            return redirect()->route('sectionIndex', $level_Id)->with('success','Élément modifié avec succès!');
         } else {
-            return redirect()->route('sectionIndex', $level_Id)->with('error','Item was not edited!');
+            return redirect()->route('sectionIndex', $level_Id)->with('error','L\'élément n\'a pas été modifié!');
         }
     }
 
@@ -129,9 +129,9 @@ class CRUDController extends Controller
     {
         $delete = SectionController::delete($request, $level_Id, $section_Id);
         if ($delete == 'done') {
-            return redirect()->route('sectionIndex', $level_Id)->with('success','Item deleted successfully!');
+            return redirect()->route('sectionIndex', $level_Id)->with('success','Élément supprimé avec succès!');
         } else {
-            return redirect()->route('sectionIndex', $level_Id)->with('error','Item was not deleted!');
+            return redirect()->route('sectionIndex', $level_Id)->with('error','L\'élément n\'a pas été supprimé!');
         }
     }
 
@@ -151,9 +151,9 @@ class CRUDController extends Controller
     {
         $store = GroupController::store($request, $level_Id, $section_Id);
         if ($store == 'done') {
-            return back()->with('success','Item created successfully!');
+            return back()->with('success','Élément créé avec succès !');
         } else {
-            return back()->with('error','Item was not inserted!');
+            return back()->with('error','L\'élément n\'a pas été inséré!');
         }
     }
 
@@ -168,9 +168,9 @@ class CRUDController extends Controller
     {
         $update = GroupController::update($request, $level_Id, $section_Id, $request->get('id'));
         if ($update == 'done') {
-            return redirect()->route('groupIndex', [$level_Id, $section_Id])->with('success','Item edited successfully!');
+            return redirect()->route('groupIndex', [$level_Id, $section_Id])->with('success','Élément modifié avec succès!');
         } else {
-            return redirect()->route('groupIndex', [$level_Id, $section_Id])->with('error','Item was not edited!');
+            return redirect()->route('groupIndex', [$level_Id, $section_Id])->with('error','L\'élément n\'a pas été modifié!');
         }
     }
 
@@ -178,9 +178,61 @@ class CRUDController extends Controller
     {
         $delete = GroupController::delete($request, $level_Id, $section_Id, $group_Id);
         if ($delete == 'done') {
-            return redirect()->route('groupIndex', [$level_Id, $section_Id])->with('success','Item deleted successfully!');
+            return redirect()->route('groupIndex', [$level_Id, $section_Id])->with('success','Élément supprimé avec succès!');
         } else {
-            return redirect()->route('groupIndex', [$level_Id, $section_Id])->with('error','Item was not deleted!');
+            return redirect()->route('groupIndex', [$level_Id, $section_Id])->with('error','L\'élément n\'a pas été supprimé!');
+        }
+    }
+
+    /* ---- STUDENT ---- */
+    public function studentIndex(Request $request, $level_Id, $section_Id, $group_Id) 
+    {
+        $rows = StudentController::index($level_Id, $section_Id, $group_Id)->toArray();
+        // dd($rows);
+        // $finalrows = [];
+        // foreach ($rows as $key => $value) {
+        //     $value['level_Id'] = $level_Id;
+        //     $finalrows[$key] = $value;
+        // }
+        return view('crud/student/index', ['rows'=> $rows]);
+    }
+
+    public function studentStore(Request $request, $level_Id, $section_Id, $group_Id) 
+    {
+        $request->request->add(["initialized" => "0"]);
+        $request->request->add(["device_type" => null]);
+        $request->request->add(["device_id" => null]);
+        $store = StudentController::store($request, $level_Id, $section_Id, $group_Id);
+        if ($store == 'done') {
+            return back()->with('success','Élément créé avec succès !');
+        } else {
+            return back()->with('error','L\'élément n\'a pas été inséré!');
+        }
+    }
+
+    public function studentEdit(Request $request, $level_Id, $section_Id, $group_Id, $student_Id) 
+    {
+        $data = StudentController::show($level_Id, $section_Id, $group_Id, $student_Id)->toArray();
+        return view('crud/student/edit', ['data'=> $data]);
+    }
+
+    public function studentUpdate(Request $request, $level_Id, $section_Id, $group_Id) 
+    {
+        $update = StudentController::update($request, $level_Id, $section_Id, $group_Id, $request->get('id'));
+        if ($update == 'done') {
+            return redirect()->route('studentIndex', [$level_Id, $section_Id, $group_Id])->with('success','Élément modifié avec succès!');
+        } else {
+            return redirect()->route('studentIndex', [$level_Id, $section_Id, $group_Id])->with('error','L\'élément n\'a pas été modifié!');
+        }
+    }
+
+    public function studentDelete(Request $request, $level_Id, $section_Id, $group_Id, $student_Id) 
+    {
+        $delete = StudentController::delete($request, $level_Id, $section_Id, $group_Id, $student_Id);
+        if ($delete == 'done') {
+            return redirect()->route('studentIndex', [$level_Id, $section_Id, $group_Id])->with('success','Élément supprimé avec succès!');
+        } else {
+            return redirect()->route('studentIndex', [$level_Id, $section_Id, $group_Id])->with('error','L\'élément n\'a pas été supprimé!');
         }
     }
 
@@ -196,9 +248,9 @@ class CRUDController extends Controller
 
         $store = ProfessorController::store($request);
         if ($store == 'done') {
-            return back()->with('success','Item created successfully!');
+            return back()->with('success','Élément créé avec succès !');
         } else {
-            return back()->with('error','Item was not inserted!');
+            return back()->with('error','L\'élément n\'a pas été inséré!');
         }
     }
 
@@ -212,9 +264,9 @@ class CRUDController extends Controller
     {
         $update = ProfessorController::update($request, $request->get('id'));
         if ($update == 'done') {
-            return redirect()->route('professorIndex')->with('success','Item edited successfully!');
+            return redirect()->route('professorIndex')->with('success','Élément modifié avec succès!');
         } else {
-            return redirect()->route('professorIndex')->with('error','Item was not edited!');
+            return redirect()->route('professorIndex')->with('error','L\'élément n\'a pas été modifié!');
         }
     }
 
@@ -222,9 +274,9 @@ class CRUDController extends Controller
     {
         $delete = ProfessorController::delete($request, $professor_Id);
         if ($delete == 'done') {
-            return redirect()->route('professorIndex')->with('success','Item deleted successfully!');
+            return redirect()->route('professorIndex')->with('success','Élément supprimé avec succès!');
         } else {
-            return redirect()->route('professorIndex')->with('error','Item was not deleted!');
+            return redirect()->route('professorIndex')->with('error','L\'élément n\'a pas été supprimé!');
         }
     }
 
@@ -237,7 +289,7 @@ class CRUDController extends Controller
             $value['avec'] = LevelController::show($value['level_Id'])->level . ' Année | ';
             if ($value['is_In_Group'] == '1') {
                 $grp = GroupController::showspetial($value['group_Id']);
-                $value['avec'] .= 'Section: ' . GroupController::showspetial($grp->section_Id)->section . ' | ';
+                $value['avec'] .= 'Section: ' . SectionController::showspetial($grp->section_Id)->section . ' | ';
                 $value['avec'] .= 'Group: ' . $grp->group;
             } else {
                 $value['avec'] .= 'Section: ' . SectionController::showspetial($value['section_Id'])->section;
@@ -251,12 +303,16 @@ class CRUDController extends Controller
 
     public function timetableStore(Request $request) 
     {
-
+        $s_not_g = ($request->get('group_Id')=='all');
+        $request->request->add(['is_In_Group' => $s_not_g?'0':'1']);
+        $request['group_Id'] = $s_not_g ? null : $request['group_Id'];
+        $request->request->add(['is_In_Section' => $s_not_g?'1':'0']);
+        $request['section_Id'] = $s_not_g ? $request['section_Id'] : null;
         $store = TimeTableController::store($request);
         if ($store == 'done') {
-            return back()->with('success','Item created successfully!');
+            return back()->with('success','Élément créé avec succès !');
         } else {
-            return back()->with('error','Item was not inserted!');
+            return back()->with('error','L\'élément n\'a pas été inséré!');
         }
     }
 
@@ -268,11 +324,16 @@ class CRUDController extends Controller
 
     public function timetableUpdate(Request $request) 
     {
+        $s_not_g = ($request->get('group_Id')=='all');
+        $request->request->add(['is_In_Group' => $s_not_g?'0':'1']);
+        $request['group_Id'] = $s_not_g ? null : $request['group_Id'];
+        $request->request->add(['is_In_Section' => $s_not_g?'1':'0']);
+        $request['section_Id'] = $s_not_g ? $request['section_Id'] : null;
         $update = TimeTableController::update($request, $request->get('id'));
         if ($update == 'done') {
-            return redirect()->route('timetableIndex')->with('success','Item edited successfully!');
+            return redirect()->route('timetableIndex')->with('success','Élément modifié avec succès!');
         } else {
-            return redirect()->route('timetableIndex')->with('error','Item was not edited!');
+            return redirect()->route('timetableIndex')->with('error','L\'élément n\'a pas été modifié!');
         }
     }
 
@@ -280,9 +341,9 @@ class CRUDController extends Controller
     {
         $delete = TimeTableController::delete($request, $timetable_Id);
         if ($delete == 'done') {
-            return redirect()->route('timetableIndex')->with('success','Item deleted successfully!');
+            return redirect()->route('timetableIndex')->with('success','Élément supprimé avec succès!');
         } else {
-            return redirect()->route('timetableIndex')->with('error','Item was not deleted!');
+            return redirect()->route('timetableIndex')->with('error','L\'élément n\'a pas été supprimé!');
         }
     }
 }

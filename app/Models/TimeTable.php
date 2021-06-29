@@ -10,8 +10,8 @@ class TimeTable extends Model
     use HasFactory;
     protected $table = 'time_tables';
 
-    protected $fillable = ['module_Id','professor_Id', 'level_Id', 'is_in_group', 'group_Id',
-    'is_in_section', 'section_Id', 'lecture_Type', 'day_Of_Week',
+    protected $fillable = ['module_Id','professor_Id', 'level_Id', 'is_In_Group', 'group_Id',
+    'is_In_Section', 'section_Id', 'lecture_Type', 'day_Of_Week',
     'starting', 'ending'];
     public function lecture()
     {

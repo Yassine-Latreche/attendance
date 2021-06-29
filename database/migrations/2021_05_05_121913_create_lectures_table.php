@@ -17,6 +17,7 @@ class CreateLecturesTable extends Migration
             $table->id();  
             $table->foreignId('time_tableId');
             $table->integer('presents');
+            $table->integer('ended')->default('0');
             $table->timestamps();
         });
     }

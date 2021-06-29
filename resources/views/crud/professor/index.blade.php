@@ -1,5 +1,5 @@
 @section('page-title')
-Create Professor
+Professeur
 @endsection
 <x-app-layout>
   <script src="/js/momentjs.min.js" ></script>
@@ -9,18 +9,18 @@ Create Professor
     background: #f3f3f3;
     margin-bottom: 25px">
     <div class="row" style="font-size: 2rem">
-            <p>Professors :</p>
+            <p>Professeurs :</p>
         </div>
         <br>
   <table class="content-table" id="student_table" >
     <thead>
       <tr>
-        <th style="width : 2rem;">Numero</th>
-        <th>Professor</th>
+        <th style="width : 2rem;">Numéro</th>
+        <th>Professeur</th>
         <th>Email</th>
-        <th>Phone Number</th>
-        <th style="width:2rem;">Edit</th>
-        <th style="width:2rem;">Delete</th>
+        <th>Numéro de téléphone</th>
+        <th style="width:2rem;">Modifier</th>
+        <th style="width:2rem;">Supprimer</th>
       </tr>
     </thead>
     <tbody id="student_rows">
@@ -44,13 +44,13 @@ Create Professor
   border-radius: 10px;
     background: #f3f3f3;">
     <div class="row" style="font-size: 2rem">
-            <p>Add a professor:</p>
+            <p>Ajouter un professeur:</p>
         </div>
         <br>
                 <form class="form" id="professorForm" name="professorForm" role="form" method="POST" >
                 @csrf
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Nom">
                         <label for="professor">Nom ...</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -58,11 +58,11 @@ Create Professor
                         <label for="email">Email ...</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="tel" class="form-control" name="phone_number" id="phone_number" placeholder="Phone Number">
-                        <label for="phone_number">Phone Number ...</label>
+                        <input type="tel" class="form-control" name="phone_number" id="phone_number" placeholder="Numéro de téléphone">
+                        <label for="phone_number">Numéro de téléphone ...</label>
                     </div>
                     <input class="confirm__button confirm__button--ok confirm__button--fill" type="submit" name="submit"
-                        value="Add" />
+                        value="Ajouter" />
                 </form>
   </div>
 </x-app-layout>

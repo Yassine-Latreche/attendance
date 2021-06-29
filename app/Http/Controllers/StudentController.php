@@ -12,17 +12,17 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
-    public function index($level, $section, $group)
+    public static function index($level, $section, $group)
     {
         return Student::where('group_Id', $group)->get();
     }
  
-    public function show($level, $section, $group, $student)
+    public static function show($level, $section, $group, $student)
     {
         return Student::find($student);
     }
 
-    public function store(Request $request, $level, $section, $group) 
+    public static function store(Request $request, $level, $section, $group) 
     {
         $student = new Student();
         $student->name = $request->get('name');
@@ -30,18 +30,28 @@ class StudentController extends Controller
         $student->section_Id = $section;
         $student->group_Id = $group;
         $student->email = $request->get('email');
+        $student->national_Student_Id = $request->get('national_Student_Id');
         $student->birthday = date('Y-m-d',strtotime($request->get('birthday')));
         $student->phone_number = $request->get('phone_number');
+        $student->initialized = $request->get('initialized');
         $student->living_area = $request->get('living_area');
         $student->willaya_d_origine = $request->get('willaya_d_origine');
         $student->device_type = $request->get('device_type');
         $student->device_id = $request->get('device_id');
         $student->save();
+        
+        $l = Level::find($level);
+        $l->update(array('number_of_students' => $l->number_of_students+1));
 
-        return "well done";
+        $s = Section::find($section);
+        $s->update(array('number_of_students' => $s->number_of_students+1));
+
+        $g = Group::find($group);
+        $g->update(array('number_of_students' => $g->number_of_students+1));
+        return "done";
     }
 
-    public function update(Request $request, $level, $section, $group, $student_Id)
+    public static function update(Request $request, $level, $section, $group, $student_Id)
     {
         $request->merge([
             'birthday' => date('Y-m-d',strtotime($request->get('birthday')))
@@ -49,15 +59,22 @@ class StudentController extends Controller
         $student = Student::findOrFail($student_Id);
         $student->update($request->all());
 
-        return $student;
+        return "done";
     }
 
-    public function delete(Request $request, $level, $group, $student_Id)
+    public static function delete(Request $request, $level, $section, $group, $student_Id)
     {
         $student = Student::findOrFail($student_Id);
         $student->delete();
+        $l = Level::find($level);
+        $l->update(array('number_of_students' => $l->number_of_students-1));
 
-        return 204;
+        $s = Section::find($section);
+        $s->update(array('number_of_students' => $s->number_of_students-1));
+
+        $g = Group::find($group);
+        $g->update(array('number_of_students' => $g->number_of_students-1));
+        return "done";
     }
 
     // Custom functions

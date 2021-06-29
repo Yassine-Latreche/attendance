@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lecture extends Model
 {
     
-        protected $fillable = ['time_tableId', 'presents'];
+        protected $fillable = ['time_tableId', 'ended', 'presents'];
     
         use HasFactory;
         public function record()
