@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => '7dfa9c3fc82211ecfcb674a8d914e09ea53492bb',
+    'reference' => 'abf3e398b7f0bdee60a801a7f3f5a1a125b610e4',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -494,12 +494,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => '7dfa9c3fc82211ecfcb674a8d914e09ea53492bb',
+      'reference' => 'abf3e398b7f0bdee60a801a7f3f5a1a125b610e4',
     ),
     'laravel/sail' => 
     array (
@@ -651,6 +651,16 @@
       array (
         0 => '^1.0',
       ),
+    ),
+    'mtolhuys/laravel-schematics' => 
+    array (
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
+      'aliases' => 
+      array (
+        0 => '9999999-dev',
+      ),
+      'reference' => '83114201abc3aa0d03c25d376bbdbad89556034a',
     ),
     'myclabs/deep-copy' => 
     array (

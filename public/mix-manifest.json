@@ -1,5 +1,6 @@
 {
     "/css/app.css": "/css/app.css",
+    "/css/styles.min.css": "/css/styles.min.css",
     "/css/projectstyle.css": "/css/projectstyle.css",
     "/css/jquery-ui.css": "/css/jquery-ui.css",
     "/css/select2.min.css": "/css/select2.min.css",
@@ -7,6 +8,7 @@
     "/css/select2-bootstrap.min.css": "/css/select2-bootstrap.min.css",
 
     "/js/app.js": "/js/app.js",
+    "/js/script.min.js": "/js/script.min.js",
     "/js/getDetails.js": "/js/getDetails.js",
     "/js/jquery-3.6.0.min.js": "/js/jquery-3.6.0.min.js",
     "/js/qrcode.js": "/js/qrcode.js",
@@ -19,6 +21,16 @@
     "/js/d3.v4.js": "/js/d3.v4.js",
     "/js/d3-scale-chromatic.v1.min.js": "/js/d3-scale-chromatic.v1.min.js",
     "/js/select2.min.js": "/js/select2.min.js",
+
+    "/images/younes.png": "/images/younes.png",
+    "/images/yassine.jpg": "/images/yassine.jpg",
+    "/images/yahia.png": "/images/yahia.png",
+    "/images/majid.jpg": "/images/majid.jpg",
+    "/images/professor_dashboard.png": "/images/professor_dashboard.png",
+    "/images/haithem.png": "/images/haithem.png",
+    "/images/gheid-zakaria.jpg": "/images/gheid-zakaria.jpg",
+    "/images/download.png": "/images/download.png",
+    "/images/brahim.webp": "/images/brahim.webp",
 
     "/images/logo.png": "/images/logo.png",
     "/favicon.ico": "/favicon.ico",
