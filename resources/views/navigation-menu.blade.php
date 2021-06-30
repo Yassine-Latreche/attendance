@@ -66,7 +66,7 @@
         </a>
         <a class="nav__link" href="{{ url('teacher_dashboard/export/') }}">
             <i class="material-icons">file_download</i>
-            Exporter Des Données
+            Exporter Les Données
         </a>
         @if(Auth::user()->belongsToTeam(App\Models\Team::where('name', 'SuperUsers')->first()))    
             <br>

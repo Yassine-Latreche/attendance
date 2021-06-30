@@ -95,6 +95,7 @@ Route::post('student/search', 'StudentController@findByEmail');
 
 /*--------- GET LECTURES ---------*/
 Route::get('lectures/now/{section_Id}/{group_Id}', 'TimeTableController@get_lectures');
+Route::get('lectures/where/{lecture_Id}', 'LectureController@lectures_where');
 Route::get('lectures/professor/{professor_Id}', 'TimeTableController@get_lectures_professor');
 
 /*--------- FIND STUDENTS BY LECTURE ---------*/

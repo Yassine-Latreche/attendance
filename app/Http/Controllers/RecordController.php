@@ -35,7 +35,7 @@ class RecordController extends Controller
         }
         
         $diff = $request->scanning_time - strtotime($generated_qr_code->created_at);
-        if ($diff > 5){
+        if ($diff > -5){
             $answer->accepted = "rejected";
             $answer->save();
             return "rejected";

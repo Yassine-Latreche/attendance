@@ -68,7 +68,20 @@ Exportation
         </div>
     </div>
     <div style="
-  margin-top: 75px;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+      background: #f3f3f3;">
+        <div style="font-size: 2.5rem">
+            <div>
+                <p style="display: inline !important">Exporter les données</p>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    <div style="
+  margin-top: 25px;
   border-radius: 10px;
   background: #f3f3f3;">
         <div class="confirm__content">

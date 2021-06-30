@@ -164,7 +164,7 @@ Tableau de bord
     </div>
     @if(Auth::user()->belongsToTeam(App\Models\Team::where('name', 'Teachers')->first()))    
 
-    <div style="
+    <div id="timetables_lecture" style="
       margin-top: 20px;
       padding: 20px;
       border-radius: 10px;
@@ -173,7 +173,7 @@ Tableau de bord
         color:white;">
         <div class="row">
             <div class="col-sm-4">
-                <div class="card" style="    height: 100%;
+                <div class="card" style="z-index:0; height: 100%;
                 background-color: #009879; border:0px;">
                     <div id="last_content" class="card-body">
                         <h3 id="last_title" class="card-title" style="font-size: 1.5rem"></h3>
@@ -181,7 +181,7 @@ Tableau de bord
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="card" style="    height: 100%;
+                <div class="card" style="z-index:0; height: 100%;
                 background-color: #009879; border:0px;">
                     <div id="now_content" class="card-body">
                         <h3 id="now_title" class="card-title" style="font-size: 1.5rem"></h3>
@@ -189,7 +189,7 @@ Tableau de bord
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="card" style="    height: 100%;
+                <div class="card" style="z-index:0; height: 100%;
                 background-color: #009879; border:0px;">
                     <div id="next_content" class="card-body">
                         <h3 id="next_title" class="card-title" style="font-size: 1.5rem"></h3>

@@ -49,25 +49,30 @@ function timeTableProfessor(professor_Id) {
                 } 
             }
             console.log(data);
+            if (data["last"] == null) {
+                $("#timetables_lecture").remove();
+            } else {
             ///
             $("#last_title").text(data["last"].module+" - "+data["last"].lecture_Type);
+            $("#last_content").append('<p class="card-text">Année: '+data["last"].level+'</p>');
             if (data["last"].group) {
                 $("#last_content").append('<p class="card-text">Groupe: '+data["last"].group+'</p>');
             } else {
                 $("#last_content").append('<p class="card-text">Section: '+data["last"].section+'</p>');
             }
-            $("#last_content").append('<p class="card-text">Année: '+data["last"].level+'</p>');
+            $("#last_content").append('<p class="card-text">Jour: '+data["last"].day_Of_Week+'</p>');
             $("#last_content").append('<p class="card-text">Début: '+data["last"].starting.substring(0, 5)+' - Fin: '+data["last"].ending.substring(0, 5)+'</p>');
 
             //
             if (data["now"]) {
                 $("#now_title").text(data["now"].module+" - "+data["now"].lecture_Type);
+                $("#now_content").append('<p class="card-text">Année: '+data["now"].level+'</p>');
                 if (data["now"].group) {
                     $("#now_content").append('<p class="card-text">Groupe: '+data["now"].group+'</p>');
                 } else {
                     $("#now_content").append('<p class="card-text">Section: '+data["now"].section+'</p>');
                 }
-                $("#now_content").append('<p class="card-text">Année: '+data["now"].level+'</p>');
+                $("#now_content").append('<p class="card-text">Jour: '+data["now"].day_Of_Week+'</p>');
                 $("#now_content").append('<p class="card-text">Début: '+data["now"].starting.substring(0, 5)+' - Fin: '+data["now"].ending.substring(0, 5)+'</p>');
 
             } else {
@@ -76,14 +81,16 @@ function timeTableProfessor(professor_Id) {
             //
 
             $("#next_title").text(data["next"].module+" - "+data["next"].lecture_Type);
+            $("#next_content").append('<p class="card-text">Année: '+data["next"].level+'</p>');
             if (data["next"].group) {
                 $("#next_content").append('<p class="card-text">Groupe: '+data["next"].group+'</p>');
             } else {
                 $("#next_content").append('<p class="card-text">Section: '+data["next"].section+'</p>');
             }
-            $("#next_content").append('<p class="card-text">Année: '+data["next"].level+'</p>');
+            $("#next_content").append('<p class="card-text">Jour: '+data["next"].day_Of_Week+'</p>');
             $("#next_content").append('<p class="card-text">Début: '+data["next"].starting.substring(0, 5)+' - Fin: '+data["next"].ending.substring(0, 5)+'</p>');
             ///
+        }
         }
     );
 }

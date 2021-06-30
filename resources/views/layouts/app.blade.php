@@ -36,18 +36,19 @@
     <script src="{{ mix('js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ mix('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ mix('js/popper.min.js') }}" defer></script>
-    <script>
+    <link rel="shortcut icon" href="{{ mix('favicon.ico') }}"/>
 
+    <script>
         $.fn.select2.defaults.set("theme", "bootstrap");
 
     </script>
-    <script src="{{ mix('js/d3.v6.min.js') }}"></script>
+    <script src="{{ mix('js/d3.v4.js') }}"></script>
 </head>
 
-<body class="font-sans antialiased" style="background-color:#e2e2e2">
+<body class="font-sans antialiased" style="background-color:#e2e2e2;">
     <x-jet-banner />
 
-    <div class="min-h-screen ">
+    <div class="min-h-screen">
         @livewire('navigation-menu')
         <!-- Page Content -->
         <main style="
@@ -59,7 +60,11 @@
             {{ $slot }}
         </main>
     </div>
+    <div class="container">
+        <img src="{{ mix('images/biglogo.png') }}" alt="logo"
+            style="position: fixed; bottom: 0px; right:0px; z-index:-2;opacity:0.2;">
 
+    </div>
     @stack('modals')
 
     @livewireScripts

@@ -16,6 +16,11 @@
     "/js/bootstrap.min.js": "/js/bootstrap.min.js",
     "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
     "/js/d3.v6.min.js": "/js/d3.v6.min.js",
-    "/js/select2.min.js": "/js/select2.min.js"
+    "/js/d3.v4.js": "/js/d3.v4.js",
+    "/js/d3-scale-chromatic.v1.min.js": "/js/d3-scale-chromatic.v1.min.js",
+    "/js/select2.min.js": "/js/select2.min.js",
 
+    "/images/logo.png": "/images/logo.png",
+    "/favicon.ico": "/favicon.ico",
+    "/images/biglogo.png": "/images/biglogo.png"
 }
