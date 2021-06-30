@@ -3226,6 +3226,74 @@
             "install-path": "../monolog/monolog"
         },
         {
+            "name": "mtolhuys/laravel-schematics",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mtolhuys/laravel-schematics.git",
+                "reference": "83114201abc3aa0d03c25d376bbdbad89556034a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mtolhuys/laravel-schematics/zipball/83114201abc3aa0d03c25d376bbdbad89556034a",
+                "reference": "83114201abc3aa0d03c25d376bbdbad89556034a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0|^8.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^2.0",
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "time": "2021-02-25T09:14:01+00:00",
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mtolhuys\\LaravelSchematics\\LaravelSchematicsServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "Mtolhuys\\LaravelSchematics\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maarten Tolhuijs",
+                    "email": "mtolhuys@hotmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A interface to help you build your models",
+            "homepage": "https://github.com/mtolhuys/laravel-schematics",
+            "keywords": [
+                "diagram",
+                "eloquent",
+                "laravel",
+                "laravel-schematics",
+                "models",
+                "mtolhuys",
+                "schema",
+                "schematics"
+            ],
+            "support": {
+                "issues": "https://github.com/mtolhuys/laravel-schematics/issues",
+                "source": "https://github.com/mtolhuys/laravel-schematics/tree/master"
+            },
+            "install-path": "../mtolhuys/laravel-schematics"
+        },
+        {
             "name": "myclabs/deep-copy",
             "version": "1.10.2",
             "version_normalized": "1.10.2.0",
@@ -9183,6 +9251,7 @@
         "hamcrest/hamcrest-php",
         "laravel/sail",
         "mockery/mockery",
+        "mtolhuys/laravel-schematics",
         "myclabs/deep-copy",
         "nunomaduro/collision",
         "phar-io/manifest",
