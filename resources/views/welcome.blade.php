@@ -69,7 +69,7 @@
                         <div class="col d-lg-flex justify-content-lg-center align-items-lg-center" style="width: 66%;">
                             <div>
                                 <h2 class="text-center" style="color: #009879;">Our Supervisor</h2>
-                                <p class="text-center">Our bitch</p>
+                                <p class="text-center">I'm telling you, he's the best</p>
                             </div>
                         </div>
                         <div class="col d-lg-flex justify-content-lg-center align-items-lg-center" style="width: 33%;">
