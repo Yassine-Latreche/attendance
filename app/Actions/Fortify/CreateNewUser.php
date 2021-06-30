@@ -79,7 +79,7 @@ class CreateNewUser implements CreatesNewUsers
             $user->delete();
             return redirect('/register')->with('error','Vous n\'êtes pas professeur, merci de contacter l\'administration.');
         } else {
-            $update = ProfessorController::update($request, $p->id);
+            $p->update(array('user_Id' => $user->id));
         }
     }
 }
