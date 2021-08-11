@@ -1,3 +1,5 @@
+# Attendance Project:
+
 # Installation:
  - clone the repo.
  - run `php artisan db:seed` to import the database.
